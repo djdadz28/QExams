@@ -1,0 +1,31 @@
+{
+  "name": "qexams",
+  "version": "1.0.0",
+  "description": "Q Exams",
+  "main": "index.html",
+  "scripts": {
+    "start": "npm run lite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lite": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djdadz28/QExams.git"
+  },
+  "keywords": [
+    "Exam"
+  ],
+  "author": "DJ Dadz Eleco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/djdadz28/QExams/issues"
+  },
+  "homepage": "https://github.com/djdadz28/QExams#readme",
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "font-awesome": "^4.7.0",
+    "jquery": "^1.9.1",
+    "lite-server": "^2.5.4",
+    "popper.js": "^1.16.0"
+  }
+}

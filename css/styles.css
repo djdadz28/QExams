@@ -1,0 +1,57 @@
+.row-header {
+    margin: 0px auto;
+    padding: 10px 0px 5px 0px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.row-content {
+    margin: 0px auto;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px ridge;
+    min-height: 300px;
+}
+
+.footer {
+    background-color: #D1C4E9;
+    margin: 0px auto;
+    padding: 20px 0px 20px 0px;
+}
+
+.jumbotron {
+    padding: 70px 30px 70px 30px;
+    margin: 0px auto;
+    background: #9575CD !important;
+    color: floralwhite;
+}
+
+.address {
+    font-size: 80%;
+    margin: 0px;
+    color: #0f0f0f;
+}
+
+body {
+    padding: 80px 0px 0px 0px;
+    z-index: 0;
+}
+
+.navbar-dark {
+    background-color: #002b49;
+    font-size: 14px;
+}
+
+.loginbutton {
+    opacity: 50%;
+}
+
+.loginbutton:hover {
+    cursor: pointer;
+    opacity: 100%;
+}
+
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px; 
+}
