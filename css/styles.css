@@ -55,3 +55,22 @@ body {
     border-bottom: 1px solid #ddd;
     padding: 10px; 
 }
+
+.tableholder {
+    padding: 10px 0 10px 10px;
+    max-height: 400px;
+    width: auto;
+    overflow: auto;
+}
+
+@media only screen and (min-width:0px) and (max-width:767px){
+    .border-left{
+      border-left: none !important;
+    }
+  }
+
+.database_record {
+    max-height: 500px;
+    width: auto;
+    overflow: auto;
+}
