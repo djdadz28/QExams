@@ -42,4 +42,5 @@ router.get('/new', function(req, res, next) {
   res.render('people/new', { title: 'People Add' });
 });
 ```
-3. Now you can access or link this url `localhost:3000/people/new`
+3. restart the app
+4. Now you can access or link this url `localhost:3000/people/new`
