@@ -27,7 +27,7 @@ $(document).ready(function(){
             firebase.auth().signInWithEmailAndPassword(data.email, data.password)
                     .then(function(authData) {
                         var auth = authData;
-                    window.location.replace("./adminDashboard.html");
+                    window.location.replace("/admins");
                     })
             .catch(function(error) {
                 console.log("Login Failed!", error);
@@ -40,7 +40,7 @@ $(document).ready(function(){
         e.preventDefault();
         firebase.auth().signOut();
         console.log("logout successfully");
-        window.location.replace("./index.html");
+        window.location.replace("/");
 
     });
 
