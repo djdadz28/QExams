@@ -11,7 +11,7 @@ Steps to install:
 Creating new route (ex: localhost:3000/people)
 
 1. create new file `/routes/people.js`
-2. create new files `/views/people/index.jade`
+2. create new file `/views/people/index.jade`
 3. write this inside `people.js`
 ```
 var express = require('express');
