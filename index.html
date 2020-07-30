@@ -75,7 +75,7 @@
             </div>
             <div class="row row-content">                                           
                 <div class="col-sm-6 text-sm-right">
-                    <form action="">
+                    <form id="start_test" action="POST">
                         <div class="form-group row">
                             <label for="test_id" class="col-sm-3 col-form-label">Test ID</label>
                             <div class="col-sm-6">
@@ -87,7 +87,7 @@
                                 <p>Name</p>
                             </div>
                             <div class="col-sm-6 font-weight-bold d-flex justify-content-start">
-                                <p>DJ Dadz Eleco</p>
+                                <p id="applicant_name"></p>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -100,7 +100,6 @@
                 <div class="col-sm-6 order-first">
                     <h6>Read this before your start</h6>
                     <p>The Test Duration is 30-40 mins. Make sure you have enough time to complete the examination for it is not resumable. Once you close or refresh your browser the test ID will automatically deactivate.</p>
-                    <br>
                     <p>Please inform your Recruiter before taking the Test.</p>
                 </div>
             </div>
@@ -119,5 +118,6 @@
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./js/index.js"></script>
+    <script src="./js/criticalExam.js"></script>
 </body>
 </html>
