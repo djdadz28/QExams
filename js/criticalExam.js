@@ -16,3 +16,8 @@ $('#start_test').on('submit', function (e) {
         alert('Please Enter a Test ID')
     }
 })
+
+
+$('#submit_answers').click(function() {
+    window.location.replace('audioExam.html')
+})

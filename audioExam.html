@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+
+    <title>Audio Skills Test</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="./img/Q-logo.png" width="150" alt="Site Logo"></a>
+            <div class="collapse navbar-collapse" id="Navbar">
+                <!-- <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="#""><span class="fa fa-info fa-lg"></span> Tests</a></li>
+                </ul> -->
+                <span class="navbar-text">
+                    <a id="logout" class="loginbutton">
+                        <span class="fa fa-sign-in"></span> Exit
+                    </a>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="container">
+        <div class="container-fluid rounded border border-light bg-light">
+            <div class="row row-header border-bottom">
+                <div class="col">
+                    <h3>Audio Skills Test</h3>
+                    <p class="text-muted">Instructions</p>
+                    <div class="col-12">
+                        <ol class="list-group">
+                            <li>You can play the audio only once and you can not pause the recording</li>
+                            <li>You can't go back to the previous questions.</li>
+                            <li>Refreshing the page will automatically end the test.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-header border-bottom">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                      <a class="nav-link active bg-success" href="#">Question 1</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="#">Question 2</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="#">Question 3</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="#">Question 4</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Question 5</a>
+                      </li>
+                  </ul>
+            </div>
+            <div class="row row-content mt-3">
+                <div class="col-sm-12">
+                    <div class="row row-header">
+                        <p><strong>Item #1</strong></p>
+                        <div class="col-md-7 col-lg-5">
+                            <button type="submit" class="btn btn-info col-sm-5" id="play-button"><span class="fa fa-play"></span> Play Audio</button>
+                        </div>
+                        <div class="col-sm-3">
+                            <div id="player">
+                                <audio id="myaudio" class="myaudio">
+                                <source src="SKT Audio 1.mp3" type="audio/mpeg" >
+                                            unsupported !! 
+                                </audio>
+                            </div>
+                        </div>
+                                   
+                    </div>
+                    <div class="row row-content">
+                        <!-- Choice A -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" id="radio-audio-1" class="form-check-input" name="audio_question_1" value="fly">
+                                    <h4>A</h4>
+                                </label>
+
+                                <table class="table table-sm audio-table">
+                                    <thead class="thead-dark">
+                                      <tr>
+                                        <th scope="col">QTY</th>
+                                        <th scope="col">SIZE</th>
+                                        <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td>Large</td>
+                                        <td colspan="2">Orange Beef*</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>NO Orange Peel</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>w/ Beef Fried Rice</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-center">Rice Spicy</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td>Large</td>
+                                        <td colspan="2">Chickent Chop Suey</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>ADD Beef</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>EXTRA Baby Corn</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">2</th>
+                                        <td>Small</td>
+                                        <td colspan="2">Fantail Shrimp</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">2</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Extra Crispy</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                        <!-- Choice B -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" id="radio-audio-1" class="form-check-input" name="audio_question_1" value="fly">
+                                    <h4>B</h4>
+                                </label>
+
+                                <table class="table table-sm audio-table">
+                                    <thead class="thead-dark">
+                                      <tr>
+                                        <th scope="col">QTY</th>
+                                        <th scope="col">SIZE</th>
+                                        <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td>Large</td>
+                                        <td colspan="2">Orange Beef*</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>w/ Beef Fried Rice</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-center">EXTRA Rice Spicy</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td>Combo</td>
+                                        <td colspan="2">Chickent Chop Suey</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>ADD Beef</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Add Baby Corn</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">2</th>
+                                        <td>Small</td>
+                                        <td colspan="2">Fantail Shrimp</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">2</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Extra Crispy</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>                           
+                        </div>
+                        <!-- Choice C -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" id="radio-audio-1" class="form-check-input" name="audio_question_1" value="fly">
+                                    <h4>C</h4>
+                                </label>
+
+                                <table class="table table-sm audio-table">
+                                    <thead class="thead-dark">
+                                      <tr>
+                                        <th scope="col">QTY</th>
+                                        <th scope="col">SIZE</th>
+                                        <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td>Large</td>
+                                        <td colspan="2">Orange Beef*</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>LESS Orange Peel</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>w/ Beef Fried Rice</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-center">ADD Spicy *</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td>Large</td>
+                                        <td colspan="2">Chickent Chop Suey</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>ADD Beef</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>ADD Baby Corn</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">2</th>
+                                        <td>Small</td>
+                                        <td colspan="2">Fantail Shrimp</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">2</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Extra Crispy</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                        <!-- Choice D -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" id="radio-audio-1" class="form-check-input" name="audio_question_1" value="fly">
+                                    <h4>D</h4>
+                                </label>
+
+                                <table class="table table-sm audio-table">
+                                    <thead class="thead-dark">
+                                      <tr>
+                                        <th scope="col">QTY</th>
+                                        <th scope="col">SIZE</th>
+                                        <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td>Large</td>
+                                        <td colspan="2">Orange Beef*</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>w/ Beef Fried Rice</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-center">Add Spicy *</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-center">EXTRA Spicy *</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td>Large</td>
+                                        <td colspan="2">Chickent Chop Suey</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>ADD Beef</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>ADD Baby Corn</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">2</th>
+                                        <td>Small</td>
+                                        <td colspan="2">Fantail Shrimp</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">2</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Extra Crispy</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-12 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-success col-sm-2" id="audio-next-button">
+                            
+                                Next Question &nbsp<span class="fa fa-caret-right"></span></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="row-footer">
+            </div>
+        </div>              
+    </div>   
+
+
+
+
+    <script src="node_modules/jquery/jquery.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/audioExam.js"></script>
+</body>
+</html>
+
+
+
+
+
