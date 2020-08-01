@@ -13,7 +13,7 @@ $(document).ready(function(){
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
-    const auth = firebase.auth();
+    var auth = firebase.auth();
 
     $('#loginForm').on('submit', function (e) {
         e.preventDefault();
