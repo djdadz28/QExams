@@ -17,6 +17,7 @@
     <title>Audio Skills Test</title>
 </head>
 <body>
+  <!-- Navigation Bar -->
     <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
@@ -29,25 +30,74 @@
                 </ul> -->
                 <span class="navbar-text">
                     <a id="logout" class="loginbutton">
-                        <span class="fa fa-sign-in"></span> Exit
+                        <span class="fa fa-sign-out"></span> Exit
                     </a>
                 </span>
             </div>
         </div>
     </nav>
 
+    <!-- Completed Modal-->
+    <div id="completedDialogModal" class="modal fade text-center" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="content">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Congratulations!</h4>
+          </div>
+          <div class="modal-body">
+            <div class="col-12">
+              Thank you for completing the assessment. Please wait for a phone call from one of our Recruiters to know your result.
+              You may now click the finish button below to exit.
+            </div>
+            <div class="col mt-3">
+              <button type="submit" id="finishButton" class="btn btn-primary">Finish <span class="fa fa-check"></span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <audio id="audio_test" class="myaudio" preload="auto">
+      <source src="audio/Test.mp3" type="audio/mpeg" >unsupported !! 
+    </audio>
+
+    <audio id="audio_1" class="myaudio" preload="auto">
+      <source src="audio/SKT Audio 1.mp3" type="audio/mpeg" >unsupported !! 
+    </audio>
+
+    <audio id="audio_2" class="myaudio" preload="auto">
+      <source src="audio/SKT Audio 2.mp3" type="audio/mpeg" >unsupported !! 
+    </audio>
+
+    <audio id="audio_3" class="myaudio" preload="auto">
+      <source src="audio/SKT Audio 3.mp3" type="audio/mpeg" >unsupported !! 
+    </audio>
+
+    <audio id="audio_4" class="myaudio" preload="auto">
+      <source src="audio/SKT Audio 4.mp3" type="audio/mpeg" >unsupported !! 
+    </audio>
+
+    <audio id="audio_5" class="myaudio" preload="auto">
+      <source src="audio/SKT Audio 5.mp3" type="audio/mpeg" >unsupported !! 
+    </audio>
+
     
     <div class="container">
         <div class="container-fluid rounded border border-light bg-light">
-            <div class="row row-header border-bottom">
+     
+          <div class="row row-header border-bottom">
                 <div class="col">
                     <h3>Audio Skills Test</h3>
                     <p class="text-muted">Instructions</p>
                     <div class="col-12">
                         <ol class="list-group">
-                            <li>You can play the audio only once and you can not pause the recording</li>
-                            <li>You can't go back to the previous questions.</li>
+                            <li>Listen carefully to the audio recording; this will only be played once</li>
+                            <li>Select the correct letter that corresponds to the customer's orders.</li>
                             <li>Refreshing the page will automatically end the test.</li>
+                            <li>Please ask the facilitator if you have any questions or concerns</li>
+                            <li>Please check and adjust the volume of your speaker before your start &nbsp;
+                              <button class="btn btn-warning" id="volumeCheck">Volume Check <span class="fa fa-volume-up"></span></button>
+                            </li>
                         </ol>
                     </div>
                 </div>
@@ -55,38 +105,31 @@
             <div class="row row-header border-bottom">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                      <a class="nav-link active bg-success" href="#">Question 1</a>
+                      <a id="pill_question1" class="nav-link active bg-success" href="#">Question 1</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link disabled" href="#">Question 2</a>
+                      <a id="pill_question2" class="nav-link disabled" href="#">Question 2</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link disabled" href="#">Question 3</a>
+                      <a id="pill_question3" class="nav-link disabled" href="#">Question 3</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link disabled" href="#">Question 4</a>
+                      <a id="pill_question4" class="nav-link disabled" href="#">Question 4</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Question 5</a>
+                        <a id="pill_question5" class="nav-link disabled" href="#">Question 5</a>
                       </li>
                   </ul>
             </div>
-            <div class="row row-content mt-3">
+
+            <!-- Question 1 Tab -->
+            <div class="row row-content mt-3" id="question_1">
                 <div class="col-sm-12">
                     <div class="row row-header">
                         <p><strong>Item #1</strong></p>
                         <div class="col-md-7 col-lg-5">
-                            <button type="submit" class="btn btn-info col-sm-5" id="play-button"><span class="fa fa-play"></span> Play Audio</button>
-                        </div>
-                        <div class="col-sm-3">
-                            <div id="player">
-                                <audio id="myaudio" class="myaudio">
-                                <source src="audio/SKT Audio 1.mp3" type="audio/mpeg" >
-                                            unsupported !! 
-                                </audio>
-                            </div>
-                        </div>
-                                   
+                            <button type="submit" class="btn btn-info col-sm-5" id="play-button-1"><span class="fa fa-play"></span> Play Audio</button>
+                        </div>                                   
                     </div>
                     <div class="row row-content">
                         <!-- Choice A -->
@@ -94,7 +137,7 @@
                             
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" id="radio-audio-1" class="form-check-input" name="audio_question_1" value="fly">
+                                    <input type="radio" id="radio-audio-1" class="form-check-input" name="audio_question_1" value="A">
                                     <h4>A</h4>
                                 </label>
 
@@ -110,7 +153,7 @@
                                       <tr>
                                         <th scope="row">1</th>
                                         <td>Large</td>
-                                        <td colspan="2">Orange Beef*</td>
+                                        <td colspan="2"><strong>Orange Beef *</strong></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">1</th>
@@ -128,12 +171,12 @@
                                         <th scope="row">1</th>
                                         <td></td>
                                         <td></td>
-                                        <td class="text-center">Rice Spicy</td>
+                                        <td class="text-center"><i>Rice Spicy</i></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">1</th>
                                         <td>Large</td>
-                                        <td colspan="2">Chickent Chop Suey</td>
+                                        <td colspan="2"><strong>Chickent Chop Suey</strong></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">1</th>
@@ -150,7 +193,7 @@
                                       <tr>
                                         <th scope="row">2</th>
                                         <td>Small</td>
-                                        <td colspan="2">Fantail Shrimp</td>
+                                        <td colspan="2"><strong>Fantail Shrimp</strong></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">2</th>
@@ -166,7 +209,7 @@
                         <div class="col-12 col-sm-6 col-lg-3">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" id="radio-audio-1" class="form-check-input" name="audio_question_1" value="fly">
+                                    <input type="radio" id="radio-audio-1" class="form-check-input" name="audio_question_1" value="B">
                                     <h4>B</h4>
                                 </label>
 
@@ -182,7 +225,7 @@
                                       <tr>
                                         <th scope="row">1</th>
                                         <td>Large</td>
-                                        <td colspan="2">Orange Beef*</td>
+                                        <td colspan="2"><strong>Orange Beef *</strong></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">1</th>
@@ -194,12 +237,12 @@
                                         <th scope="row">1</th>
                                         <td></td>
                                         <td></td>
-                                        <td class="text-center">EXTRA Rice Spicy</td>
+                                        <td class="text-center"><i>EXTRA Rice Spicy</i></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">1</th>
                                         <td>Combo</td>
-                                        <td colspan="2">Chickent Chop Suey</td>
+                                        <td colspan="2"><strong>Chickent Chop Suey</strong></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">1</th>
@@ -216,7 +259,7 @@
                                       <tr>
                                         <th scope="row">2</th>
                                         <td>Small</td>
-                                        <td colspan="2">Fantail Shrimp</td>
+                                        <td colspan="2"><strong>Fantail Shrimp</strong></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">2</th>
@@ -232,7 +275,7 @@
                         <div class="col-12 col-sm-6 col-lg-3">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" id="radio-audio-1" class="form-check-input" name="audio_question_1" value="fly">
+                                    <input type="radio" id="radio-audio-1" class="form-check-input" name="audio_question_1" value="C">
                                     <h4>C</h4>
                                 </label>
 
@@ -248,7 +291,7 @@
                                       <tr>
                                         <th scope="row">1</th>
                                         <td>Large</td>
-                                        <td colspan="2">Orange Beef*</td>
+                                        <td colspan="2"><strong>Orange Beef *</strong></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">1</th>
@@ -266,12 +309,12 @@
                                         <th scope="row">1</th>
                                         <td></td>
                                         <td></td>
-                                        <td class="text-center">ADD Spicy *</td>
+                                        <td class="text-center"><i>ADD Spicy *</i></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">1</th>
                                         <td>Large</td>
-                                        <td colspan="2">Chickent Chop Suey</td>
+                                        <td colspan="2"><strong>Chickent Chop Suey</strong></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">1</th>
@@ -288,7 +331,7 @@
                                       <tr>
                                         <th scope="row">2</th>
                                         <td>Small</td>
-                                        <td colspan="2">Fantail Shrimp</td>
+                                        <td colspan="2"><strong>Fantail Shrimp</strong></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">2</th>
@@ -304,7 +347,7 @@
                         <div class="col-12 col-sm-6 col-lg-3">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" id="radio-audio-1" class="form-check-input" name="audio_question_1" value="fly">
+                                    <input type="radio" id="radio-audio-1" class="form-check-input" name="audio_question_1" value="D">
                                     <h4>D</h4>
                                 </label>
 
@@ -320,7 +363,7 @@
                                       <tr>
                                         <th scope="row">1</th>
                                         <td>Large</td>
-                                        <td colspan="2">Orange Beef*</td>
+                                        <td colspan="2"><strong>Orange Beef *</strong></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">1</th>
@@ -332,18 +375,18 @@
                                         <th scope="row">1</th>
                                         <td></td>
                                         <td></td>
-                                        <td class="text-center">Add Spicy *</td>
+                                        <td class="text-center"><i>Add Spicy *</i></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">1</th>
                                         <td></td>
                                         <td></td>
-                                        <td class="text-center">EXTRA Spicy *</td>
+                                        <td class="text-center"><i>EXTRA Spicy *</i></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">1</th>
                                         <td>Large</td>
-                                        <td colspan="2">Chickent Chop Suey</td>
+                                        <td colspan="2"><strong>Chickent Chop Suey</strong></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">1</th>
@@ -360,7 +403,7 @@
                                       <tr>
                                         <th scope="row">2</th>
                                         <td>Small</td>
-                                        <td colspan="2">Fantail Shrimp</td>
+                                        <td colspan="2"><strong>Fantail Shrimp</strong></td>
                                       </tr>
                                       <tr>
                                         <th scope="row">2</th>
@@ -376,28 +419,1159 @@
                     
                     <div class="row mt-3">
                         <div class="col-12 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-success col-sm-2" id="audio-next-button">
-                            
-                                Next Question &nbsp<span class="fa fa-caret-right"></span></button>
+                            <button id="nextButton_1" class="btn btn-success col-sm-2">
+                                2nd Question &nbsp<span class="fa fa-caret-right"></span>
+                            </button>
                         </div>
                     </div>
-
                 </div>
             </div>
+            <!-- Question 2 Tab -->
+            <div class="row row-content mt-3 collapse" id="question_2">
+              <div class="col-sm-12">
+                  <div class="row row-header">
+                      <p><strong>Item #2</strong></p>
+                      <div class="col-md-7 col-lg-5">
+                          <button type="submit" class="btn btn-info col-sm-5" id="play-button-2"><span class="fa fa-play"></span> Play Audio</button>
+                      </div>                               
+                  </div>
+                  <div class="row row-content">
+                    <!-- Choice A -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" id="radio-audio-2" class="form-check-input" name="audio_question_2" value="A">
+                                <h4>A</h4>
+                            </label>
+
+                            <table class="table table-sm audio-table">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">QTY</th>
+                                    <th scope="col">SIZE</th>
+                                    <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Large</td>
+                                    <td colspan="2"><strong>Twice Cooked Pork *</strong></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>EXTRA Well Done</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Large</td>
+                                    <td colspan="2"><strong>Chicken w/ Garlic Sauce</strong></td>                          
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>[Sauce Thick]</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Broccoli Crunchy</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>w/ Young Chow Fried Rice</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-center"><i>NO Veg on Rice</i></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-center"><i>EXTRA Baby Shrimp</i></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                    <!-- Choice B -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        
+                      <div class="form-check">
+                          <label class="form-check-label">
+                              <input type="radio" id="radio-audio-2" class="form-check-input" name="audio_question_2" value="B">
+                              <h4>B</h4>
+                          </label>
+
+                          <table class="table table-sm audio-table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">QTY</th>
+                                  <th scope="col">SIZE</th>
+                                  <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Large</td>
+                                  <td colspan="2"><strong>Twice Cooked Pork *</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Large</td>
+                                  <td colspan="2"><strong>Chicken w/ Garlic Sauce</strong></td>                          
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>Broccoli Crunchy</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ Young Chow Fried Rice</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-center"><i>[Sauce Thick]</i></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-center"><i>EXTRA Baby Shrimp</i></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                      </div>
+                    </div>
+                    <!-- Choice C -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                          
+                      <div class="form-check">
+                          <label class="form-check-label">
+                              <input type="radio" id="radio-audio-2" class="form-check-input" name="audio_question_2" value="C">
+                              <h4>C</h4>
+                          </label>
+
+                          <table class="table table-sm audio-table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">QTY</th>
+                                  <th scope="col">SIZE</th>
+                                  <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Large</td>
+                                  <td colspan="2"><strong>Twice Cooked Pork *</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>Well Done</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Large</td>
+                                  <td colspan="2"><strong>Chicken w/ Garlic Sauce</strong></td>                          
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>[Sauce Thick]</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>Broccoli Crunchy</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ Young Chow Fried Rice</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-center"><i>NO Veg on Rice</i></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-center"><i>EXTRA Baby Shrimp</i></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                      </div>
+                    </div>
+                    <!-- Choice D -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                          
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" id="radio-audio-2" class="form-check-input" name="audio_question_2" value="D">
+                            <h4>D</h4>
+                        </label>
+
+                        <table class="table table-sm audio-table">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">QTY</th>
+                                <th scope="col">SIZE</th>
+                                <th scope="col" colspan="2" class="text-center">ORDER</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Large</td>
+                                <td colspan="2"><strong>Twice Cooked Pork *</strong></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td></td>
+                                <td></td>
+                                <td>Well Done</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Large</td>
+                                <td colspan="2"><strong>Chicken w/ Garlic Sauce</strong></td>                          
+                              </tr>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td></td>
+                                <td></td>
+                                <td>[Sauce Thick]</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td></td>
+                                <td></td>
+                                <td>Broccoli Crunchy</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td></td>
+                                <td></td>
+                                <td>w/ Young Chow Fried Rice</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td></td>
+                                <td></td>
+                                <td class="text-center"><i>NO Vegetables</i></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td></td>
+                                <td></td>
+                                <td class="text-center"><i>EXTRA Baby Shrimp</i></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                  </div>
 
 
 
+                  </div>
+                  
+                  <div class="row mt-3">
+                      <div class="col-12 d-flex justify-content-end">
+                          <button id="nextButton_2" class="btn btn-success col-sm-2">
+                              3rd Question &nbsp<span class="fa fa-caret-right"></span>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <!-- Question 3 Tab -->
+            <div class="row row-content mt-3 collapse" id="question_3">
+              <div class="col-sm-12">
+                  <div class="row row-header">
+                      <p><strong>Item #3</strong></p>
+                      <div class="col-md-7 col-lg-5">
+                          <button type="submit" class="btn btn-info col-sm-5" id="play-button-3"><span class="fa fa-play"></span> Play Audio</button>
+                      </div>                                
+                  </div>
+                  <div class="row row-content">
+                    <!-- Choice A -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" id="radio-audio-3" class="form-check-input" name="audio_question_3" value="A">
+                                <h4>A</h4>
+                            </label>
+
+                            <table class="table table-sm audio-table">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">QTY</th>
+                                    <th scope="col">SIZE</th>
+                                    <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Combo</td>
+                                    <td colspan="2"><strong>BBQ Spareribs (w/ Bone)</strong></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>w/ Chicken Fried Rice</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Combo</td>
+                                    <td colspan="2"><strong>BBQ Spareribs (w/ Bone)</strong></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>w/ French Fries</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Small</td>
+                                    <td colspan="2"><strong>BBQ Spareribs (w/ Bone)</strong></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Small</td>
+                                    <td colspan="2"><strong>Pork Lo Mein</strong></td>
+                                  </tr>                                
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                    <!-- Choice B -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+    
+                      <div class="form-check">
+                          <label class="form-check-label">
+                              <input type="radio" id="radio-audio-3" class="form-check-input" name="audio_question_3" value="B">
+                              <h4>B</h4>
+                          </label>
+
+                          <table class="table table-sm audio-table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">QTY</th>
+                                  <th scope="col">SIZE</th>
+                                  <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Combo</td>
+                                  <td colspan="2"><strong>BBQ Spareribs (Long Bone)</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ Chicken Fried Rice</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Combo</td>
+                                  <td colspan="2"><strong>BBQ Spareribs (Long Bone)</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ French Fries</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>BBQ Spareribs (Long Bone)</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>Pork Lo Mein</strong></td>
+                                </tr>                                
+                              </tbody>
+                            </table>
+                      </div>
+                    </div>
+                    <!-- Choice C -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+    
+                      <div class="form-check">
+                          <label class="form-check-label">
+                              <input type="radio" id="radio-audio-3" class="form-check-input" name="audio_question_3" value="C">
+                              <h4>C</h4>
+                          </label>
+
+                          <table class="table table-sm audio-table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">QTY</th>
+                                  <th scope="col">SIZE</th>
+                                  <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Combo</td>
+                                  <td colspan="2"><strong>BBQ Spareribs</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>[Long Bone]</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ Chicken Fried Rice</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Combo</td>
+                                  <td colspan="2"><strong>BBQ Spareribs</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>[Long Bone]</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ French Fries</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-center"><i>EXTRA CRispy</i></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>BBQ Spareribs</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>[Long Bone]</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>Pork Lo Mein</strong></td>
+                                </tr>                                
+                              </tbody>
+                            </table>
+                      </div>
+                    </div>
+                    <!-- Choice D -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+    
+                      <div class="form-check">
+                          <label class="form-check-label">
+                              <input type="radio" id="radio-audio-3" class="form-check-input" name="audio_question_3" value="D">
+                              <h4>D</h4>
+                          </label>
+
+                          <table class="table table-sm audio-table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">QTY</th>
+                                  <th scope="col">SIZE</th>
+                                  <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Combo</td>
+                                  <td colspan="2"><strong>BBQ Spareribs (w/ Bone)</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ Chicken Fried Rice</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Combo</td>
+                                  <td colspan="2"><strong>BBQ Spareribs (w/ Bone)</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ French Fries</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-center"><i>Crispy</i></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>BBQ Spareribs</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>WITH [Long Bone]</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>Pork Lo Mein</strong></td>
+                                </tr>                                
+                              </tbody>
+                            </table>
+                      </div>
+                    </div>
+
+
+                  </div>
+                  
+                  <div class="row mt-3">
+                      <div class="col-12 d-flex justify-content-end">
+                          <button id="nextButton_3" class="btn btn-success col-sm-2">
+                              4th Question &nbsp<span class="fa fa-caret-right"></span>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <!-- Question 4 Tab -->
+            <div class="row row-content mt-3 collapse" id="question_4">
+              <div class="col-sm-12">
+                  <div class="row row-header">
+                      <p><strong>Item #4</strong></p>
+                      <div class="col-md-7 col-lg-5">
+                          <button type="submit" class="btn btn-info col-sm-5" id="play-button-4"><span class="fa fa-play"></span> Play Audio</button>
+                      </div>                
+                  </div>
+                  <div class="row row-content">
+                    <!-- Choice A -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" id="radio-audio-4" class="form-check-input" name="audio_question_4" value="A">
+                                <h4>A</h4>
+                            </label>
+
+                            <table class="table table-sm audio-table">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">QTY</th>
+                                    <th scope="col">SIZE</th>
+                                    <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Combo</td>
+                                    <td colspan="2"><strong>Chicken Teriyaki Sticks (5)</strong></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>LESS Well Done</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>w/ French Fries</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-center"><i>LESS Crispy</i></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Large</td>
+                                    <td colspan="2"><strong>Kung Pao Pork *</strong></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>EXTRA Pork</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>NO Veg on Entree</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>w/ Pork Friend Rice</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-center"><i>NO Veg on Rice</i></td>
+                                  </tr>                               
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                    <!-- Choice B -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        
+                      <div class="form-check">
+                          <label class="form-check-label">
+                              <input type="radio" id="radio-audio-4" class="form-check-input" name="audio_question_4" value="B">
+                              <h4>B</h4>
+                          </label>
+
+                          <table class="table table-sm audio-table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">QTY</th>
+                                  <th scope="col">SIZE</th>
+                                  <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Combo</td>
+                                  <td colspan="2"><strong>Chicken Teriyaki Sticks (5)</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>LESS Well Done</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ French Fries</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-center"><i>LESS Crispy</i></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Large</td>
+                                  <td colspan="2"><strong>Kung Pao Pork *</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>EXTRA Pork</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>NO Veg on Entree</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ Pork Friend Rice</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-center"><i>NO Vegetable</i></td>
+                                </tr>                               
+                              </tbody>
+                            </table>
+                      </div>
+                    </div>
+                    <!-- Choice C -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        
+                      <div class="form-check">
+                          <label class="form-check-label">
+                              <input type="radio" id="radio-audio-4" class="form-check-input" name="audio_question_4" value="C">
+                              <h4>C</h4>
+                          </label>
+
+                          <table class="table table-sm audio-table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">QTY</th>
+                                  <th scope="col">SIZE</th>
+                                  <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Combo</td>
+                                  <td colspan="2"><strong>Chicken Teriyaki Sticks (5)</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>LESS Crispy</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ French Fries</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-center"><i>LESS Crispy</i></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Large</td>
+                                  <td colspan="2"><strong>Kung Pao Pork *</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>EXTRA Pork</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>NO Veg on Entree</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ Pork Friend Rice</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-center"><i>NO Veg on Rice</i></td>
+                                </tr>                               
+                              </tbody>
+                            </table>
+                      </div>
+                    </div>
+                    <!-- Choice D -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        
+                      <div class="form-check">
+                          <label class="form-check-label">
+                              <input type="radio" id="radio-audio-4" class="form-check-input" name="audio_question_4" value="D">
+                              <h4>D</h4>
+                          </label>
+
+                          <table class="table table-sm audio-table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">QTY</th>
+                                  <th scope="col">SIZE</th>
+                                  <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Combo</td>
+                                  <td colspan="2"><strong>Chicken Teriyaki Sticks (5)</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>LESS Crispy</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ French Fries</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-center"><i>LESS Crispy</i></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Large</td>
+                                  <td colspan="2"><strong>Kung Pao Pork *</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>EXTRA Pork</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>NO Vegetable</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ Pork Friend Rice</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-center"><i>NO Vegetable</i></td>
+                                </tr>                               
+                              </tbody>
+                            </table>
+                      </div>
+                    </div>
 
 
 
+                  </div>
+                  
+                  <div class="row mt-3">
+                      <div class="col-12 d-flex justify-content-end">
+                          <button id="nextButton_4" class="btn btn-success col-sm-2">
+                              Last Question &nbsp<span class="fa fa-caret-right"></span>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <!-- Question 5 Tab -->
+            <div class="row row-content mt-3 collapse" id="question_5">
+              <div class="col-sm-12">
+                  <div class="row row-header">
+                      <p><strong>Item #5</strong></p>
+                      <div class="col-md-7 col-lg-5">
+                          <button type="submit" class="btn btn-info col-sm-5" id="play-button-5"><span class="fa fa-play"></span> Play Audio</button>
+                      </div>                          
+                  </div>
+                  <div class="row row-content">
+                    <!-- Choice A -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" id="radio-audio-4" class="form-check-input" name="audio_question_5" value="A">
+                                <h4>A</h4>
+                            </label>
 
+                            <table class="table table-sm audio-table">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">QTY</th>
+                                    <th scope="col">SIZE</th>
+                                    <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Small</td>
+                                    <td colspan="2"><strong>Pork Chop (2) | White Rice</strong></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Small</td>
+                                    <td colspan="2"><strong>Fried Fish (Whiting) (2) | French Fries</strong></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Top w/ Hot Sauce</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Small</td>
+                                    <td colspan="2"><strong>Party Platter B</strong></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>ONLY Small Wing</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Small</td>
+                                    <td colspan="2"><strong>Ginger Ale</strong></td>
+                                  </tr>                            
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                    <!-- Choice B -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        
+                      <div class="form-check">
+                          <label class="form-check-label">
+                              <input type="radio" id="radio-audio-4" class="form-check-input" name="audio_question_5" value="B">
+                              <h4>B</h4>
+                          </label>
+
+                          <table class="table table-sm audio-table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">QTY</th>
+                                  <th scope="col">SIZE</th>
+                                  <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>Pork Chop (2) | White Rice</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>Fried Fish (Whiting) (2) | French Fries</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>Top w/ Hot Sauce</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>Party Platter B</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>[Small Wing]</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong> 2L Ginger Ale</strong></td>
+                                </tr>                            
+                              </tbody>
+                            </table>
+                      </div>
+                    </div>
+                    <!-- Choice C -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                          
+                      <div class="form-check">
+                          <label class="form-check-label">
+                              <input type="radio" id="radio-audio-4" class="form-check-input" name="audio_question_5" value="C">
+                              <h4>C</h4>
+                          </label>
+
+                          <table class="table table-sm audio-table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">QTY</th>
+                                  <th scope="col">SIZE</th>
+                                  <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>Pork Chop (2)</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ White Rice</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>Fried Fish (Whiting) (2)</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ French Fries</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-center"><i>Top w/ Hot Sauce</i></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>Party Platter B</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>ONLY [Small Wing]</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td colspan="2"><strong>Ginger Ale</strong></td>
+                                </tr>                            
+                              </tbody>
+                            </table>
+                      </div>
+                    </div>
+                    <!-- Choice D -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                          
+                      <div class="form-check">
+                          <label class="form-check-label">
+                              <input type="radio" id="radio-audio-4" class="form-check-input" name="audio_question_5" value="D">
+                              <h4>D</h4>
+                          </label>
+
+                          <table class="table table-sm audio-table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">QTY</th>
+                                  <th scope="col">SIZE</th>
+                                  <th scope="col" colspan="2" class="text-center">ORDER</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>Pork Chop (2)</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ White Rice</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>Fried Fish (Whiting) (2)</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>w/ French Fries</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-center"><i>Top w/ Hot Sauce</i></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Small</td>
+                                  <td colspan="2"><strong>Party Platter B</strong></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td></td>
+                                  <td>ONLY [Small Wing]</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td></td>
+                                  <td colspan="2"><strong>2L Ginger Ale</strong></td>
+                                </tr>                            
+                              </tbody>
+                            </table>
+                      </div>
+                    </div>
+
+                  </div>
+                  
+                  <div class="row mt-3">
+                      <div class="col-10 col-sm-12 offset-1 offset-sm-0 d-sm-flex justify-content-end">
+                          <button id="audioSubmit" class="btn btn-primary col-sm-3">
+                              Submit Answers &nbsp<span class="fa fa-paper-plane"></span>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+            </div>
 
             <div class="row-footer">
             </div>
         </div>              
     </div>   
-
-
 
 
     <!-- build:js js/main.js -->

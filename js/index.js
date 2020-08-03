@@ -1,5 +1,14 @@
 $(document).ready(function(){
 
+    if (history.pushState != undefined) {
+        history.pushState(null, null, location.href);
+    }
+    history.back();
+    history.forward();
+    window.onpopstate = function () {
+        history.go(1);
+    };
+
     var firebaseConfig = {
         apiKey: "AIzaSyA8fq7AApZPMghtzK6TSGfCGQ5CZzOHGhQ",
         authDomain: "q-exams.firebaseapp.com",
