@@ -47,12 +47,14 @@ $(document).ready(function(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             var auth = user;
-            console.log("User is: " + auth)
+            console.log("User is: " + JSON.stringify(auth))
         } else {
-        // No user is signed in.
             var auth = null;
             console.log("No User")
+
+            if (window.location.pathname == "/adminDashboard.html") {
+                window.location.replace("/");
+            }
         }
     });
-
 });
