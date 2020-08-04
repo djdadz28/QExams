@@ -25,9 +25,15 @@ var audio_exam_answers = {
 
 var all_answers = {}
 
+document.cookie = 'SameSite=Lax';
+
 $('document').ready(function() {
 
     
+    function buffwait() {
+        console.log('audio still buffering')
+    }
+
     //Volume Check
     $('#volumeCheck').click(function() {
         if(!test_click){

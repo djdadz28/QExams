@@ -1,4 +1,7 @@
 
+document.cookie = 'SameSite=Lax';
+
+
 var test_id = document.getElementById('test_id');
 
 $('document').ready(function() {
@@ -11,9 +14,7 @@ $('document').ready(function() {
         if ($('test_id').val() !== "") {
                 sessionStorage.setItem('test_id', test_id.value)
                 window.location.replace('criticalExamSKT.html')
-            }else{
-                alert("Please Enter a Valid Test ID")
-            }
+
         }else{
             alert('Please Your Test ID')
         }
