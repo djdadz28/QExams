@@ -25,14 +25,7 @@ var audio_exam_answers = {
 
 var all_answers = {}
 
-document.cookie = 'SameSite=Lax';
-
 $('document').ready(function() {
-
-    
-    function buffwait() {
-        console.log('audio still buffering')
-    }
 
     //Volume Check
     $('#volumeCheck').click(function() {
@@ -210,22 +203,18 @@ $('document').ready(function() {
 
             var answer_1 = JSON.parse(sessionStorage.getItem('answers'))
             var answer_2 = JSON.parse(sessionStorage.getItem('audio_answers'))
-            var applicant_id = sessionStorage.getItem('test_id')
+            var applicant_id = {test_id: sessionStorage.getItem('test_id')}
 
-            all_answers = {
-                test_id: applicant_id,
-                ...answer_1,
-                ...answer_2
-            }
+            all_answers = Object.assign(applicant_id, answer_1, answer_2)
             
             var database = firebase.database();
             var ref = database.ref("Results");
 
-            ref.push(all_answers);
-
-
             console.log(all_answers)
-            $('#completedDialogModal').modal('toggle')
+
+            // ref.push(all_answers);
+
+            $('#completedDialogModal').modal('toggle');
         }
 
     });
