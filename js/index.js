@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
     if (history.pushState != undefined) {
         history.pushState(null, null, location.href);
@@ -47,6 +47,7 @@ $(document).ready(function(){
 
     $('#logout').on('click', function(e) {
         e.preventDefault();
+        sessionStorage.clear();
         firebase.auth().signOut();
         console.log("logout successfully");
         window.location.replace("./index.html");
@@ -101,9 +102,9 @@ $(document).ready(function(){
 
 });
 
-$(window).blur(function() {
-    $("body").hide();
-});
-$(window).focus(function() {
-    $("body").show();
-});
+// $(window).blur(function() {
+//     $("body").hide();
+// });
+// $(window).focus(function() {
+//     $("body").show();
+// });
