@@ -68,6 +68,29 @@
         </div>
     </div>
 
+    <div id="startConfirmationModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" role="content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirmation</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-12">
+                        <p>The Critical Thinking Test is consist of 10 questions with a time limit of 20mins.
+                            The examination cannot be paused and Refreshing the page will automatically end the test.
+                        </p>
+                        
+                        <p class="text-right">Do you want to start now?</p>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button class="btn btn-primary" id="confirmStartButton">Start Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="container-fluid rounded border border-light bg-light">
             <div class="row row-header border-bottom">
@@ -119,7 +142,6 @@
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./js/index.js"></script>
-    <script src="./js/criticalExam.js"></script>
     <script src="./js/session.js"></script>
     <!-- endbuild -->
 </body>

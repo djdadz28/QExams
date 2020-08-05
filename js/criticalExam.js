@@ -62,7 +62,53 @@ $('document').ready(function() {
     
     });
 
+    function countdown(seconds) {
+
+        seconds = parseInt(sessionStorage.getItem("seconds"))||seconds;
+
+        function tick() {
+            seconds--; 
+            sessionStorage.setItem("seconds", seconds)
+            var counter = document.getElementById("timer");
+            var current_minutes = parseInt(seconds/60);
+            var current_seconds = seconds % 60;
+            counter.innerHTML = current_minutes + ":" + (current_seconds < 10 ? "0" : "") + current_seconds;
+            
+            if( seconds > 0 ) {
+                setTimeout(tick, 1000);
+            }else{
+                critical_exam_completed = true
+                autoSubmitAnswers();
+            }
+
+        }
+        tick();
+        
+    }
+
+    countdown(1200);
+ 
+    function autoSubmitAnswers() {
+
+        $("#criticalExam :text").each(function() {
+            if($(this).attr("name").length > 0) {
+                critical_exam_answers[$(this).attr("name")] = $(this).val();
+            }
+        });
+    
+        $("#criticalExam :radio:checked").each(function() {
+            if($(this).attr("name").length > 0) {
+                critical_exam_answers[$(this).attr("name")] = $(this).val();
+            }
+        });
+
+        sessionStorage.setItem('answers', JSON.stringify(critical_exam_answers))
+        window.location.replace('./audioExam.html')
+    }
+
 })
+
+
 
 
 

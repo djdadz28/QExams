@@ -69,13 +69,6 @@ body {
     padding: 10px; 
 }
 
-.tableholder {
-    padding: 10px 0 10px 10px;
-    max-height: 400px;
-    width: auto;
-    overflow: auto;
-}
-
 @media only screen and (min-width:0px) and (max-width:767px){
     .border-left{
       border-left: none !important;
@@ -101,10 +94,13 @@ input#radio-audio-1, input#radio-audio-2, input#radio-audio-3, input#radio-audio
 }
 
 
-/* table.table tbody tr td,
-table.table thead tr th,
-table.table thead {
-  border-left: 1px solid red;
-  border-right: 1px solid red;
-} */
+.tableholder {
+    padding: 10px 0 10px 10px;
+    max-height: 300px;
+    width: auto;
+    overflow: auto;
+}
 
+.table-text-small {
+    font-size: 12px;
+}

@@ -1,3 +1,20 @@
+var firebaseConfig = {
+    apiKey: "AIzaSyA8fq7AApZPMghtzK6TSGfCGQ5CZzOHGhQ",
+    authDomain: "q-exams.firebaseapp.com",
+    databaseURL: "https://q-exams.firebaseio.com",
+    projectId: "q-exams",
+    storageBucket: "q-exams.appspot.com",
+    messagingSenderId: "498052030565",
+    appId: "1:498052030565:web:33a57e78802406531ae68c",
+    measurementId: "G-MS3W98G8BP"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+var auth = firebase.auth();
+
+
+
 $(document).ready(function() {
 
     if (history.pushState != undefined) {
@@ -9,20 +26,6 @@ $(document).ready(function() {
         history.go(1);
     };
 
-    var firebaseConfig = {
-        apiKey: "AIzaSyA8fq7AApZPMghtzK6TSGfCGQ5CZzOHGhQ",
-        authDomain: "q-exams.firebaseapp.com",
-        databaseURL: "https://q-exams.firebaseio.com",
-        projectId: "q-exams",
-        storageBucket: "q-exams.appspot.com",
-        messagingSenderId: "498052030565",
-        appId: "1:498052030565:web:33a57e78802406531ae68c",
-        measurementId: "G-MS3W98G8BP"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-    var auth = firebase.auth();
 
     $('#loginForm').on('submit', function (e) {
         e.preventDefault();
@@ -57,7 +60,8 @@ $(document).ready(function() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             var auth = user;
-            console.log("User is: " + JSON.stringify(auth))
+            // console.log("User is: " + JSON.stringify(auth))
+            console.log("Admin Successfully Logged in")
         } else {
             var auth = null;
             console.log("No User")

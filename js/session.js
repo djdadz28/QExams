@@ -9,15 +9,20 @@ $('document').ready(function() {
     //test ID Verification
     $('#start_test').on('submit', function (e) {
         e.preventDefault()
-        console.log()
-        if (test_id.value !== "") {
-                sessionStorage.setItem('test_id', test_id.value);
-                window.location.replace('criticalExamSKT.html');
-        }else{
-            alert('Please Your Test ID');
-        }
+            if (test_id.value !== "") {
+                $('#startConfirmationModal').modal('toggle');
+            }else{
+                alert('Please Your Test ID');
+            }
 
     });
+
+    $('#confirmStartButton').click(function() {
+        sessionStorage.setItem('test_id', test_id.value);
+        window.location.replace('./criticalExamSKT.html');
+    });
+
+        
 
 
 });
