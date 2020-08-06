@@ -17,6 +17,13 @@ var user = {
         audio_exam_result: ""
 };
 
+firebase.auth().onAuthStateChanged(function(user) {
+        if (!user) {
+            window.location.replace('./index.html')
+        }
+            
+})
+
 $('document').ready(function() {
 
     //Create Test ID
@@ -66,16 +73,16 @@ $('document').ready(function() {
     });
  
     loadUnusedIdTable();
+    loadFinalResult()
 
 });
 
 
 function loadUnusedIdTable() {
     var rootRef = database.ref().child("Records");
+    var query = rootRef.orderByChild("test_start_confirmation").equalTo(false)
+    query.on('child_added', function (snap){
     
-    rootRef.on('child_added', function (snap){
-    
-
         var test_id = snap.child("id").val();
         var first_name = snap.child("first_name").val();
         var last_name = snap.child("last_name").val();
@@ -89,6 +96,37 @@ function loadUnusedIdTable() {
         
     });
 };
+
+
+function loadFinalResult() {
+    var rootRef = database.ref().child("Records");
+    var query = rootRef.orderByChild("test_start_confirmation").equalTo(true)
+    query.on('child_added', function (snap){
+    
+        var test_id = snap.child("id").val();
+        var first_name = snap.child("first_name").val();
+        var last_name = snap.child("last_name").val();
+        var email = snap.child("email").val();
+
+        var critical_exam_score = snap.child("critical_exam_score").val();
+        var audio_exam_score = snap.child("audio_exam_score").val();
+
+        var applicant = "<tr id=\"" +snap.key + "\" ><td>"+test_id + "</td><td>" + 
+                                first_name +"</td><td>" + 
+                                last_name + "</td><td>" + 
+                                email + "</td><td>" +
+                                critical_exam_score + "</td><td>" + 
+                                audio_exam_score + "</td></tr>";
+
+        
+
+        $('#scoreResults').append(applicant);
+        
+    });
+};
+
+
+
 
 function onDelete(user){
 

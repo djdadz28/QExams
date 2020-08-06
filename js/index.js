@@ -39,12 +39,13 @@ $(document).ready(function() {
             firebase.auth().signInWithEmailAndPassword(data.email, data.password)
                     .then(function(authData) {
                         var auth = authData;
-                    window.location.replace("./adminDashboard.html");
+                        window.location.replace("./adminDashboard.html");
                     })
-            .catch(function(error) {
-                console.log("Login Failed!", error);
-                alert(error);
-            });
+                    .catch(function(error) {
+                        $("#loginWarning").text("Incorrect Login Credentials").fadeTo(3000, 300).hide(100, function(){
+                            $("#loginWarning").hide(100);
+                        })
+                    });
         };
     });
 

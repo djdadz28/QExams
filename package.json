@@ -38,6 +38,7 @@
     "gulp-rev": "9.0.0",
     "gulp-sass": "4.1.0",
     "gulp-uglify": "3.0.2",
-    "gulp-usemin": "0.3.30"
+    "gulp-usemin": "0.3.30",
+    "moment": "^2.27.0"
   }
 }
