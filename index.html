@@ -85,6 +85,8 @@
                         <p>The Critical Thinking Test is consist of 10 questions with a time limit of 20mins.
                             The examination cannot be paused and Refreshing the page will automatically end the test.
                         </p>
+
+                        <span>Name: </span><span id="applicant_name" class="font-weight-bold"></span>
                         
                         <p class="text-right">Do you want to start now?</p>
                     </div>
@@ -108,20 +110,11 @@
                     <form id="start_test" action="POST">
                         <div class="form-group row">
                             <label for="test_id" class="col-sm-3 col-form-label">Test ID</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" id="test_id" placeholder="Enter Test ID">
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="test_id" required placeholder="Enter Test ID">
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-3">
-                                <p>Name</p>
-                            </div>
-                            <div class="col-sm-6 font-weight-bold d-flex justify-content-start">
-                                <p id="applicant_name"></p>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-9 d-flex justify-content-end">
+                            <div class="col-sm-10 mt-3 d-flex justify-content-end">
+                                <span class="col-auto p-2 rounded text-danger" id="invalid_id_warning"></span>
                                 <button type="submit" class="btn btn-primary">Start Test</button>
                             </div>
                         </div>

@@ -17,6 +17,7 @@ var user = {
         audio_exam_result: ""
 };
 
+
 firebase.auth().onAuthStateChanged(function(user) {
         if (!user) {
             window.location.replace('./index.html')
@@ -107,6 +108,7 @@ function loadFinalResult() {
         var first_name = snap.child("first_name").val();
         var last_name = snap.child("last_name").val();
         var email = snap.child("email").val();
+        var date_taken = snap.child("date_taken").val();
 
         var critical_exam_score = snap.child("critical_exam_score").val();
         var audio_exam_score = snap.child("audio_exam_score").val();
@@ -115,10 +117,9 @@ function loadFinalResult() {
                                 first_name +"</td><td>" + 
                                 last_name + "</td><td>" + 
                                 email + "</td><td>" +
+                                date_taken + "</td><td>" +
                                 critical_exam_score + "</td><td>" + 
-                                audio_exam_score + "</td></tr>";
-
-        
+                                audio_exam_score + "</td><td class=\"text-right\"><button id=\"" +snap.key + "\" class=\"btn btn-light btn-sm\" onclick=\"printResult(this)\"><span class=\"fa fa-print\"></span></button></td></tr>"
 
         $('#scoreResults').append(applicant);
         
@@ -138,4 +139,37 @@ function onDelete(user){
             console.error(err);
         });
     
+}
+
+
+function printResult(user){
+    var rootRef = database.ref("Records/" + user.id)
+        rootRef.once('value').then(function(snap) {
+
+        sessionStorage.setItem('test_id', snap.child("first_name").val())
+        sessionStorage.setItem('first_name', snap.child("first_name").val())
+        sessionStorage.setItem('last_name', snap.child("last_name").val())
+        sessionStorage.setItem('date_taken', snap.child("date_taken").val())
+        sessionStorage.setItem('answers', JSON.stringify(snap.child("answers").val()))
+
+
+        sessionStorage.setItem('critical_exam_score', snap.child("critical_exam_score").val())
+        sessionStorage.setItem('critical_exam_result', snap.child("critical_exam_result").val())
+        sessionStorage.setItem('audio_exam_score', snap.child("audio_exam_score").val())
+        sessionStorage.setItem('audio_exam_result', snap.child("audio_exam_result").val())
+
+        myPopup('./printResult.html','Print Result')
+
+        }).catch(function(e){
+            console.log(e)
+        });
+    
+    
+}
+
+
+
+function myPopup(url, windowname, w, h, x, y)
+{
+    window.open(url, windowname, "resizable=no, toolbar=no, scrollbars=no, menubar=no, status=no, directories=no, width=" + w + ", height=" + h + ", left=" + x + ", top=" + y);
 }

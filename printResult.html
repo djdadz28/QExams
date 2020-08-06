@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="favicon" rel="shortcut icon" type="image/png" href="img/Q-favicon.png"/>
+    <!-- build:css css/main.css -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <!-- endbuild -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+
+</head>
+
+<body>
+
+    <!--Critical Exam-->
+    <div class="container" id="printResult">
+        <div class="container-fluid rounded border border-light bg-light">
+            <div class="row row-header">
+                <div class="col-6">
+                    <h4 class="">SKT Test Result</h4>
+                    <h4 id="titlename" class="text-muted"></h4>
+                    <span class="text-muted" id="date_taken"></span>
+                </div>
+                <div class="col-3 text-center">
+                    <h4 class="">Critical Thinking Test</h4>
+                    <h4 class="" id="written_result"></h4>
+                </div>
+                <div class="col-3 text-center">
+                    <h4 class="">Audio Skills Test</h4>
+                    <h4 class="" id="audio_result"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <span>1. If Bob buys 35 apples in the store and he pays $7.00, what is the price per apple?</span>
+                    <span id="ans_1" class="font-weight-bold"></span>
+                </div>
+                <div class="col-12">
+                    <span>2. Pig is to pork” as “Cow is to ______”.</span>
+                    <span id="ans_2" class="font-weight-bold"></span>
+                </div>
+                <div class="col-12">
+                    <span>3. If it takes 2 hours to drive to City A and the city is 130 miles away, what speed was the vehicle travelling at? answer in mph.</span>
+                    <span id="ans_3" class="font-weight-bold"></span>
+                </div>
+                <div class="col-12">
+                    <span>4. If Sally Sells more tickets than Betty and Betty sells more tickets than Jodie, who sells the most if we compare Sally and Jodie?</span>
+                    <span id="ans_4" class="font-weight-bold"></span>
+                </div>
+                <div class="col-12">
+                    <span>5. What is the next number in this sequence? 1,   4,   9,    16,    ___?</span>
+                    <span id="ans_5" class="font-weight-bold"></span>
+                </div>
+                <div class="col-12">
+                    <span>6. If you have a cube which is 5m x 5m x 5m, what is the cubic meters this container would hold?</span>
+                    <span id="ans_6" class="font-weight-bold"></span>
+                </div>
+                <div class="col-12">
+                    <span>7. “Boat is to water” therefore “Plane is to _______”.</span>
+                    <span id="ans_7" class="font-weight-bold"></span>
+                </div>
+                <div class="col-12">
+                    <span>8. What number does not fit? 3, 5, 7, 11, 14, 17. Please explain why.</span>
+                    <span id="ans_8" class="font-weight-bold"></span>
+                </div>
+                <div class="col-12">
+                    <span>9. What is 20% of 19?</span>
+                    <span id="ans_9" class="font-weight-bold"></span>
+                </div>
+                <div class="col-12">
+                    <span>10. If my yard is 8 meters long and 7 meters wide. What’s the area of my yard?</span>
+                    <span id="ans_10" class="font-weight-bold"></span>
+                </div>
+            </div>
+            <div class="row row-header">
+                <div class="col-12">
+                    <span>Audio Question 1: </span>
+                    <span id="ans_11" class="font-weight-bold"></span>
+                </div>
+                <div class="col-12">
+                    <span>Audio Question 2: </span>
+                    <span id="ans_12" class="font-weight-bold"></span>
+                </div>
+                <div class="col-12">
+                    <span>Audio Question 3: </span>
+                    <span id="ans_13" class="font-weight-bold"></span>
+                </div>
+                <div class="col-12">
+                    <span>Audio Question 4: </span>
+                    <span id="ans_14" class="font-weight-bold"></span>
+                </div>
+                <div class="col-12">
+                    <span>Audio Question 5: </span>
+                    <span id="ans_15" class="font-weight-bold"></span>
+                </div>
+            </div>
+            <div class="row row-header">
+
+            </div>
+        </div>
+    </div>
+    <!-- build:js js/main.js -->
+    <script src="node_modules/jquery/jquery.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/moment/moment.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/admin.js"></script>
+    <script src="./js/printResult.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
