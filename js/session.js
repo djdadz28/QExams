@@ -70,7 +70,7 @@ $('document').ready(function() {
 
 function popupWindow(url)
 {
-   window.open(url,"MyWindow","toolbar=no, menubar=no,scrollbars=no,resizable=no,location=no,directories=no,status=no");
+   window.open(url,"MyWindow","toolbar=no, menubar=no,scrollbars=no,resizable=no,location=no,directories=no,status=no, width=900, height=700");
 }
 
 

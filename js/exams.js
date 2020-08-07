@@ -257,7 +257,7 @@ $('document').ready(function() {
         }else{
             $('#pill_question2').removeClass('active bg-success').addClass('disabled');
             $('#pill_question3').removeClass('disabled').addClass('active bg-success');
-            audio_1.pause();
+            audio_2.pause();
             $('#question_12').hide();
             $('#question_13').show();
         }
@@ -278,7 +278,7 @@ $('document').ready(function() {
         }else{
             $('#pill_question3').removeClass('active bg-success').addClass('disabled');
             $('#pill_question4').removeClass('disabled').addClass('active bg-success');
-            audio_1.pause();
+            audio_3.pause();
             $('#question_13').hide();
             $('#question_14').show();
         }
@@ -299,7 +299,7 @@ $('document').ready(function() {
         }else{
             $('#pill_question4').removeClass('active bg-success').addClass('disabled');
             $('#pill_question5').removeClass('disabled').addClass('active bg-success');
-            audio_1.pause();
+            audio_4.pause();
             $('#question_14').hide();
             $('#question_15').show();
         }
@@ -319,10 +319,12 @@ $('document').ready(function() {
             })
         }else{
             $("#audioExam :radio:checked").each(function() {
+                
                 if($(this).attr("name").length > 0) {
                     audio_exam_answers[$(this).attr("name")] = $(this).val();
                 }
             });
+            audio_5.pause();
 
             
 
@@ -366,7 +368,8 @@ $('document').ready(function() {
 
     $('#finishButton').click(function(e) {
         e.preventDefault();
-        window.location.replace('./index.html');
+        window.opener.location.reload();
+        window.close();
     });
     
     
