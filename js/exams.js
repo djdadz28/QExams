@@ -316,7 +316,6 @@ $('document').ready(function() {
                 critical_exam_score: Results[0][0],
                 audio_exam_result: Results[0][1],
                 date_taken: sessionStorage.getItem('date_taken'),
-                test_start_confirmation: JSON.parse(sessionStorage.getItem('start_confirmation')),
                 completion_status: true,
                 answers: all_answers
             }

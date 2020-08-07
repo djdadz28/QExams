@@ -119,7 +119,7 @@ function loadFinalResult() {
                                 email + "</td><td>" +
                                 date_taken + "</td><td>" +
                                 critical_exam_score + "</td><td>" + 
-                                audio_exam_score + "</td><td class=\"text-right\"><button id=\"" +snap.key + "\" class=\"btn btn-light btn-sm\" onclick=\"printResult(this)\"><span class=\"fa fa-print\"></span></button></td></tr>"
+                                audio_exam_score + "</td><td class=\"text-right\"><button id=\"" +snap.key + "\" class=\"btn btn-light btn-sm\" onclick=\"printResult(this)\"><span class=\"fa fa-print\"></span></button><button id=\"" +snap.key + "\" class=\"btn btn-success btn-sm\" onclick=\"reactivateID(this)\"><span class=\"fa fa-key\"></span></button></td></tr>"
 
         $('#scoreResults').append(applicant);
         
@@ -141,6 +141,15 @@ function onDelete(user){
     
 }
 
+function reactivateID(user){
+    var updateRef = database.ref("Records");
+    updateRef.child(user.id).update({test_start_confirmation: false}).then(function() {
+        user.parentNode.parentNode.remove()
+        console.log("Reactivated Successfully")
+    }).catch(function(e){
+        console.error(e)
+    })
+}
 
 function printResult(user){
     var rootRef = database.ref("Records/" + user.id)

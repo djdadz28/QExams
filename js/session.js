@@ -15,6 +15,7 @@ $('document').ready(function() {
         e.preventDefault()
 
             var rootRef = database.ref("Records/" + test_id.value.toUpperCase())
+            var updateRef = database.ref("Records");
             rootRef.once('value').then(function(snap) {
 
                 var checkID = snap.exists();
@@ -24,6 +25,18 @@ $('document').ready(function() {
                     if (!checkIfUsed){
                         $('#startConfirmationModal').modal('toggle');
                         $('#applicant_name').text(snap.child("first_name").val() +" "+snap.child("last_name").val())
+                        
+                        $('#confirmStartButton').click(function() {
+                                updateRef.child(test_id.value.toUpperCase()).update({test_start_confirmation: true}).then(function() {
+                                sessionStorage.setItem('test_id', test_id.value);
+                                sessionStorage.setItem('written_test_completed', false);                           
+                                sessionStorage.setItem('date_taken', moment().format('l'))
+                                window.location.replace('./exams.html');
+                            }).catch(function(e){
+                                console.error(e)
+                            })
+                        });
+
                     }else{
                         $("#invalid_id_warning").text("Test ID is not available").fadeTo(3000, 300).hide(100, function(){
                             $("#invalid_id_warning").hide(100);
@@ -35,19 +48,16 @@ $('document').ready(function() {
                         $("#invalid_id_warning").hide(100);
                     })
                 }
+
+                
+
             }).catch(function(e){
                 console.log(e)
             });
     });
 
 
-    $('#confirmStartButton').click(function() {
-        sessionStorage.setItem('test_id', test_id.value);
-        sessionStorage.setItem('written_test_completed', false);
-        sessionStorage.setItem('start_confirmation', true)
-        sessionStorage.setItem('date_taken', moment().format('l'))
-        window.location.replace('./exams.html');
-    });
+    
 
         
 
