@@ -31,7 +31,10 @@ $('document').ready(function() {
                                 sessionStorage.setItem('test_id', test_id.value);
                                 sessionStorage.setItem('written_test_completed', false);                           
                                 sessionStorage.setItem('date_taken', moment().format('l'))
-                                window.location.replace('./exams.html');
+                                $('#startConfirmationModal').modal('toggle');
+                                $('body').hide()
+                                
+                                popupWindow('./exams.html');
                             }).catch(function(e){
                                 console.error(e)
                             })
@@ -65,5 +68,9 @@ $('document').ready(function() {
 });
 
 
+function popupWindow(url)
+{
+   window.open(url,"MyWindow","toolbar=no, menubar=no,scrollbars=no,resizable=no,location=no,directories=no,status=no");
+}
 
 
