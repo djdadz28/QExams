@@ -50,6 +50,20 @@ if(!sessionStorage.getItem('test_id')){
 }
 
 
+$(function () {  
+    $(document).keydown(function (e) {  
+        return (e.which || e.keyCode) != 116;  
+    });
+
+    $(document).bind("contextmenu",function(e){
+        return false;
+    });
+});  
+
+
+
+
+
 $('document').ready(function() {
 
     if (written_test === "false") {
@@ -441,4 +455,7 @@ function testResult(answer) {
     return [[writtenTestScore, writtentTestResult], [audioTestScore, audioTestResult]];
 
 }
+
+
+
 
