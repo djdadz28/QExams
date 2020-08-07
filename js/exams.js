@@ -332,7 +332,7 @@ $('document').ready(function() {
 
             var answer_1 = JSON.parse(sessionStorage.getItem('answers'));
             var answer_2 = JSON.parse(sessionStorage.getItem('audio_answers'));
-            var applicant_id = sessionStorage.getItem('test_id');
+            var applicant_id = sessionStorage.getItem('test_id').toUpperCase();
             var all_answers = Object.assign(answer_1, answer_2)
 
             var Results = testResult(all_answers);
@@ -470,6 +470,13 @@ function testResult(answer) {
 
 }
 
+
+function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode != 46 &&(charCode < 48 || charCode > 57)))
+        return false;
+    return true;
+}    
 
 
 
