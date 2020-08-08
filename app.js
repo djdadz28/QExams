@@ -6,8 +6,11 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var adminsRouter = require('./routes/admins');
+var examsRouter = require('./routes/exams');
 
-var app = express();
+
+var app = module.exports.app = exports.app = express();
+var router = express.Router();
 
 // prepare server
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
@@ -28,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/admins', adminsRouter);
+app.use('/exams', examsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,6 +1,6 @@
 .row-header {
     margin: 0px auto;
-    padding: 10px 0px 5px 0px;
+    padding: 10px 0px 10px 0px;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -74,3 +74,36 @@ body {
     width: auto;
     overflow: auto;
 }
+
+.row-footer {
+    margin: 0px auto;
+    padding: 10px 0px 10px 0px;
+    min-height: 100px;
+}
+
+.row-question {
+    margin: 0px auto;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px ridge;
+    min-height: 100px;
+}
+
+/* .myaudio {
+    pointer-events: none;
+} */
+
+input#radio-audio-1 {
+    transform: scale(1.5);
+ }
+
+.audio-table {
+    font-size: 12px;
+}
+
+
+/* table.table tbody tr td,
+table.table thead tr th,
+table.table thead {
+  border-left: 1px solid red;
+  border-right: 1px solid red;
+} */

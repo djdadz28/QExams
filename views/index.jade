@@ -2,6 +2,7 @@ extends layout
 
 block content
   div.
+    <!-- Navigation Bar -->
     <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
@@ -9,9 +10,6 @@ block content
             </button>
             <a class="navbar-brand" href="#"><img src="/images/Q-logo.png" width="150" alt="Site Logo"></a>
             <div class="collapse navbar-collapse" id="Navbar">
-                <!-- <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="#""><span class="fa fa-info fa-lg"></span> Tests</a></li>
-                </ul> -->
                 <span class="navbar-text">
                     <a data-toggle="modal" data-target="#loginModal" class="loginbutton">
                         <span class="fa fa-sign-in"></span> Login
@@ -20,31 +18,62 @@ block content
             </div>
         </div>
     </nav>
-
+    
+    <!-- Login Modal-->
     <div id="loginModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg" role="content">
+        <div class="modal-dialog" role="content">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Login</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form id="loginForm" method="POST">
+                    <form id="loginForm">
                         <div class="form-row">
-                            <div class="form-group col-sm-4">
+                            <div class="form-group col-sm-7">
                                 <label class="sr-only" for="userEmail" >Email Address</label>
-                                <input type="email" class="form-control form-control-sm mr-1" id="userEmail" placeholder="Email Address">
+                                <input type="email" class="form-control form-control-sm mr-1" id="userEmail" required placeholder="Email Address">
                             </div>
-                            <div class="form-group col-sm-4">
+                            <div class="form-group col-sm-5">
                                 <label class="sr-only" for="userPassword">Password</label>
-                                <input type="password" class="form-control form-control-sm mr-1" id="userPassword" placeholder="Password">
+                                <input type="password" class="form-control form-control-sm mr-1" id="userPassword" required placeholder="Password">
                             </div>
                         </div>
                         <div class="form-row">
-                            <button type="button" class="btn btn-secondary btn-sm ml-auto" data-dismiss="modal">Cancel</button>
-                            <button type="submit" for="loginForm" class="btn btn-primary btn-sm ml-1">Log in</button>        
+                            <div class="col-7 text-right">
+                                <span id="loginWarning" class="table-text-small text-danger"></span>
+                            </div>
+                            <div class="col-5 text-right">
+                                <button type="button" class="btn btn-secondary btn-sm ml-auto" data-dismiss="modal">Cancel</button>
+                                <button type="submit" for="loginForm" class="btn btn-primary btn-sm ml-1">Log in</button>   
+                            </div>     
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="startConfirmationModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" role="content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirmation</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-12">
+                        <p>The Critical Thinking Test is consist of 10 questions with a time limit of 20mins.
+                            The examination cannot be paused and Refreshing the page will automatically end the test.
+                        </p>
+
+                        <span>Name: </span><span id="applicant_name" class="font-weight-bold"></span>
+                        
+                        <p class="text-right">Do you want to start now?</p>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button class="btn btn-primary" id="confirmStartButton">Start Now</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,23 +88,14 @@ block content
             </div>
             <div class="row row-content">                                           
                 <div class="col-sm-6 text-sm-right">
-                    <form action="">
+                    <form id="start_test" action="POST">
                         <div class="form-group row">
                             <label for="test_id" class="col-sm-3 col-form-label">Test ID</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" id="test_id" placeholder="Enter Test ID">
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="test_id" required placeholder="Enter Test ID">
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-3">
-                                <p>Name</p>
-                            </div>
-                            <div class="col-sm-6 font-weight-bold d-flex justify-content-start">
-                                <p>DJ Dadz Eleco</p>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-9 d-flex justify-content-end">
+                            <div class="col-sm-10 mt-3 d-flex justify-content-end">
+                                <span class="col-auto p-2 rounded text-danger" id="invalid_id_warning"></span>
                                 <button type="submit" class="btn btn-primary">Start Test</button>
                             </div>
                         </div>
@@ -83,11 +103,16 @@ block content
                 </div>
                 <div class="col-sm-6 order-first">
                     <h6>Read this before your start</h6>
-                    <p>The Test Duration is 30-40 mins. Make sure you have enough time to complete the examination for it is not resumable. Once you close or refresh your browser the test ID will automatically deactivate.</p>
-                    <br>
+                    <p>This assessment is consist of two types of tests.</p>
+                    <p>Test I. <strong>Critical Thinking Test</strong>
+                    <br>Test II. <strong>Audio Skills Test</strong></p>
+                    
+                    <p>Make sure you have enough time to complete the examination for it is not resumable. Once you close or refresh your browser the test ID will automatically deactivate.</p>
                     <p>Please inform your Recruiter before taking the Test.</p>
                 </div>
+                <div class="row">
+                </div>
             </div>
-            
+
         </div>
     </div>

@@ -4,13 +4,14 @@ html
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Imported -->
+    <!-- build:css css/main.css -->
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/popper.min.js"></script>
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <!-- endbuild -->
 
     <!-- Online Modules-->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
@@ -20,10 +21,14 @@ html
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
 
-    <!-- Own files -->
+     <!-- build:js js/main.js -->
     <link rel="stylesheet" href="/stylesheets/style.css">
     <script src="/javascripts/index.js"></script>
-
+    <script src="/javascripts/criticalExam.js"></script>
+    <script src="/javascripts/audioExam.js"></script>
     <title>#{title}</title>
+    <!-- endbuild -->
   body
     block content
+
+    include footer
