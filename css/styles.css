@@ -46,6 +46,7 @@
 body {
     padding: 80px 0px 0px 0px;
     z-index: 0;
+    overscroll-behavior-y: contain;
 }
 
 .navbar-dark {
