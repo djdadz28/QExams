@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="favicon" rel="shortcut icon" type="image/png" href="img/Q-favicon.png"/>
+    <!-- build:css css/main.css -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <!-- endbuild -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+    
+
+    <title>Qualfon Assessment</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="./img/Q-logo.png" width="150" alt="Site Logo"></a>
+            <div class="collapse navbar-collapse" id="Navbar">
+                <!-- <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="#""><span class="fa fa-info fa-lg"></span> Tests</a></li>
+                </ul> -->
+            </div>
+        </div>
+    </nav>
+
+
+    <!--Finish Modal-->
+    <div id="completedDialogModal" class="modal fade text-center" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="content">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Congratulations!</h4>
+          </div>
+          <div class="modal-body">
+            <div class="col-12">
+              Thank you for completing the assessment. Please wait for a phone call from one of our Recruiters to know your result.
+              You may now click the finish button below to exit.
+            </div>
+            <div class="col mt-3">
+              <button type="submit" id="finishButton" class="btn btn-primary">Finish <span class="fa fa-check"></span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Skipped Questions Modal-->
+    <div id="skippedQuestionsModal" class="modal fade text-center" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="content">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Please answer these questions:</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <div class="col-12" id="skipped_questions">
+                
+              </div>
+              <div class="col mt-3">
+                <button class="btn btn-secondary" data-dismiss="modal">Close &nbsp;<span class="fa fa-close"></span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!--EPT-->
+    <div class="container" id="ept_holder">
+        <div class="container-fluid rounded border border-light bg-light">
+            <div class="row row-header border-bottom">
+                <div class="col-12">
+                    <h3>English Proficiency Test</h3>
+                    <p class="text-muted">
+                        The proficiency test below is made up of multiple sections, there are 50 questions in total.
+                        Once you have answered all of the questions in a particular section, click the “Next Section” link at the end of the page to proceed.
+                        Once you have answered all of the questions on the final section, click the "Submit Answers" button to complete the test.
+                    </p>
+                    <p class="text-info"><b>Instructions:</b> Select the best answer</p>
+                </div>
+            </div>
+            <div class="row row-header border-bottom" id="pills_holder">
+                <div class="col-12">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                        <a id="pill_1" onclick="pillNavigator(this)" class="nav-link active bg-success" href="#">Grammar I</a>
+                        </li>
+                        <li class="nav-item">
+                        <a id="pill_2" onclick="pillNavigator(this)" class="nav-link" href="#">Grammar II</a>
+                        </li>
+                        <li class="nav-item">
+                        <a id="pill_3" onclick="pillNavigator(this)" class="nav-link" href="#">Vocabulary</a>
+                        </li>
+                        <li class="nav-item">
+                        <a id="pill_4" onclick="pillNavigator(this)" class="nav-link" href="#">Reading Comprehension</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row row-content" id="content_holder">
+                
+                <div class="col-12" id="div_grammar_1"></div>
+                <div class="col-12" id="div_grammar_2"></div>
+                <div class="col-12" id="div_vocabulary"></div>
+                <div id="div_reading_comprehension">
+                    <div class="col-12 mt-3">
+                        <div class="border border-info p-4 rounded bg-white border-stroke">
+                            <h4>Directions to Erik's house</h4>
+                            <p>Leave Interstate 25 at exit 7S. Follow that road (Elm Street) for two miles.
+                                After one mile, you will pass a small shopping center on your left. At the next set of traffic lights, turn right onto Maple Drive. Erik's house is the third house on your left. It's number 33, and it's white with green trim.</p>
+                        </div>
+                        <div class="col-12" id="div_reading_1"></div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="border border-info p-4 rounded bg-white border-stroke">
+                            <p>
+                                Date: May 16, 1998 <br>
+                                To: Megan Fallerman <br>
+                                From: Steven Roberts <br>
+                                Subject: Staff Meeting
+                            </p>
+                            <p>
+                                Please be prepared to give your presentation on the monthly sales figures at our upcoming staff meeting.
+                                In addition to the accurate accounting of expenditures for the monthly sales, be ready to discuss possible reasons for fluctuations as well as possible trends in future customer spending. Thank you.
+                            </p>
+                        </div>
+                        <div class="col-12" id="div_reading_2"></div>
+                    </div>
+                    
+                    <div class="col-12 mt-3">
+                        <div class="border border-info p-4 rounded bg-white border-stroke">
+                            <h4>The B&B Tour</h4>
+                            <p>Spend ten romantic days enjoying the lush countryside of southern England. The counties of Devon, Dorset, Hampshire, and Essex invite you to enjoy their castles and coastline, their charming bed and breakfast inns, their museums and their cathedrals. Spend lazy days watching the clouds drift by or spend active days hiking the glorious hills. These fields were home to Thomas Hardy, and the ports launched ships that shaped world history. Bed and breakfasts abound, ranging from quiet farmhouses to lofty castles. Our tour begins August 15.
+                                Call or fax us today for more information 1-800-222-XXXX. Enrollment is limited, so please call soon.</p>
+                        </div>
+                        <div class="col-12" id="div_reading_3"></div>
+                    </div>
+                    
+                    <div class="col-12 mt-3">
+                        <div class="border border-info p-4 rounded bg-white border-stroke">
+                            <p>Anna Szewcyzk, perhaps the most popular broadcaster in the news media today, won the 1998 Broadcasting Award. She got her start in journalism as an editor at the Hollsville County Times in Missouri.
+                                When the newspaper went out of business, a colleague persuaded her to enter the field of broadcasting.
+                                She moved to Oregon to begin a master's degree in broadcast journalism at Atlas University.
+                                Following graduation, she was able to begin her career as a local newscaster with WPSU-TV in Seattle, Washington, and rapidly advanced to national television.
+                                Noted for her quick wit and trenchant commentary, her name has since become synonymous with <i>Good Day, America!</i> Accepting the award at the National Convention of Broadcast Journalism held in Chicago, Ms. Szewcyzk remarked, "I am so honored by this award that I'm at a total loss for words!" Who would ever have believed it?</p>
+                        </div>
+                        <div class="col-12" id="div_reading_4"></div>
+                    </div>
+                </div>
+                
+                <div class="col-12 mt-3">
+                    <div class="row row-content-button">
+                        <div class="col-6 text-left">
+                            <button class="btn btn-info" id="prev_section"><span class="fa fa-arrow-left"></span>&nbsp; Prev Section</button>
+                        </div>
+                        <div class="col-6 text-right">
+                            <button class="btn btn-info" id="next_section">Next Section &nbsp; <span class="fa fa-arrow-right"></span></button>
+                            <button class="btn btn-primary" id="submit_ept_answers">Submit Answers &nbsp; <span class="fa fa-paper-plane"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                
+
+        </div>              
+    </div>
+
+    <!-- build:js js/main.js -->
+    <script src="node_modules/jquery/jquery.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/moment/moment.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/session.js"></script>
+    <script src="./js/eptInfo.js"></script>
+    <script src="./js/initialExam.js"></script>
+    <script>
+        if(!sessionStorage.getItem('test_id')){
+            window.location.replace('./ept.html');
+        }
+    </script>
+    
+
+    <!-- endbuild -->
+</body>
+</html>

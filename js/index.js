@@ -61,11 +61,11 @@ $(document).ready(function() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             var auth = user;
-            // console.log("User is: " + JSON.stringify(auth))
-            console.log("Admin Successfully Logged in")
+            console.log("User is: " + JSON.stringify(auth))
+            // console.log("Admin Successfully Logged in")
         } else {
             var auth = null;
-            console.log("No User")
+            // console.log("No User")
 
             if (window.location.pathname == "/adminDashboard.html") {
                 window.location.replace("/");

@@ -14,7 +14,8 @@ var user = {
         critical_exam_score: "",
         critical_exam_result: "",
         audio_exam_score: "",
-        audio_exam_result: ""
+        audio_exam_result: "",
+        ept_start_confirmation: false
 };
 
 
@@ -101,25 +102,25 @@ function loadUnusedIdTable() {
 
 function loadFinalResult() {
     var rootRef = database.ref().child("Records");
-    var query = rootRef.orderByChild("test_start_confirmation").equalTo(true)
+    var query = rootRef.orderByChild("ept_start_confirmation").equalTo(true)
     query.on('child_added', function (snap){
     
         var test_id = snap.child("id").val();
         var first_name = snap.child("first_name").val();
         var last_name = snap.child("last_name").val();
-        var email = snap.child("email").val();
+        var ept_score = snap.child("ept_score").val();
         var date_taken = snap.child("date_taken").val();
 
         var critical_exam_score = snap.child("critical_exam_score").val();
         var audio_exam_score = snap.child("audio_exam_score").val();
-
+        var forSKT = snap.child("forSKT").val();
         var applicant = "<tr id=\"" +snap.key + "\" ><td>"+test_id + "</td><td>" + 
                                 first_name +"</td><td>" + 
                                 last_name + "</td><td>" + 
-                                email + "</td><td>" +
                                 date_taken + "</td><td>" +
+                                ept_score + "</td><td>" +
                                 critical_exam_score + "</td><td>" + 
-                                audio_exam_score + "</td><td class=\"text-right\"><button id=\"" +snap.key + "\" class=\"btn btn-light btn-sm\" onclick=\"printResult(this)\"><span class=\"fa fa-print\"></span></button><button id=\"" +snap.key + "\" class=\"btn btn-success btn-sm\" onclick=\"reactivateID(this)\"><span class=\"fa fa-key\"></span></button></td></tr>"
+                                audio_exam_score + "</td><td class=\"text-right\"><button id=\"" +snap.key + "\" class=\"btn " + (forSKT ? "btn-success": "btn-danger") + " btn-sm\" onclick=\"activateSKT(this)\">SKT<span class=\"fa fa-check\"></span></button><button id=\"" +snap.key + "\" class=\"btn btn-light btn-sm\" onclick=\"printResult(this)\"><span class=\"fa fa-print\"></span></button><button id=\"" +snap.key + "\" class=\"btn btn-success btn-sm\" onclick=\"reactivateID(this)\"><span class=\"fa fa-key\"></span></button></td></tr>"
 
         $('#scoreResults').append(applicant);
         
@@ -127,6 +128,29 @@ function loadFinalResult() {
 };
 
 
+
+function activateSKT(user){
+        var updateRef = database.ref("Records");
+        var checkRef = database.ref("Records/" + user.id);
+        var activated;
+        checkRef.once('value').then(function(snap) {
+            activated = snap.child("forSKT").val()
+            if (activated) {
+                updateRef.child(user.id).update({forSKT: false}).then(function() {
+                    $(user).addClass('btn-danger').removeClass('btn-success')
+                }).catch(function(e){
+                    console.error(e)
+                })
+                }else{
+                updateRef.child(user.id).update({forSKT: true}).then(function() {
+                    $(user).addClass('btn-success').removeClass('btn-danger')
+                }).catch(function(e){
+                    console.error(e)
+                })
+            }
+        })
+        
+}
 
 
 function onDelete(user){
@@ -144,7 +168,8 @@ function onDelete(user){
 function reactivateID(user){
     var updateRef = database.ref("Records");
     updateRef.child(user.id).update({test_start_confirmation: false}).then(function() {
-        user.parentNode.parentNode.remove()
+        // user.parentNode.parentNode.remove()
+        alert("Successfully Reactivated")
         console.log("Reactivated Successfully")
     }).catch(function(e){
         console.error(e)
@@ -166,6 +191,7 @@ function printResult(user){
         sessionStorage.setItem('critical_exam_result', snap.child("critical_exam_result").val())
         sessionStorage.setItem('audio_exam_score', snap.child("audio_exam_score").val())
         sessionStorage.setItem('audio_exam_result', snap.child("audio_exam_result").val())
+        sessionStorage.setItem('ept_score', snap.child("ept_score").val())
 
         myPopup('./printResult.html','Print Result')
 

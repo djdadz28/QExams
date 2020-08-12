@@ -22,7 +22,9 @@ $('document').ready(function() {
                 
                 if(checkID){
                     var checkIfUsed = snap.child("test_start_confirmation").val()
-                    if (!checkIfUsed){
+                    var forSKT = snap.child("forSKT").val()
+                    console.log(forSKT)
+                    if (!checkIfUsed && forSKT){
                         $('#startConfirmationModal').modal('toggle');
                         $('#applicant_name').text(snap.child("first_name").val() +" "+snap.child("last_name").val())
                         

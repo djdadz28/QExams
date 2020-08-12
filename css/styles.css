@@ -17,6 +17,12 @@
     min-height: 100px;
 }
 
+.row-content-button {
+    margin: 0px auto;
+    padding: 10px 0px 10px 0px;
+    min-height: 100px;
+}
+
 .row-question {
     margin: 0px auto;
     padding: 10px 0px 10px 0px;
@@ -104,4 +110,8 @@ input#radio-audio-1, input#radio-audio-2, input#radio-audio-3, input#radio-audio
 
 .table-text-small {
     font-size: 12px;
+}
+
+.border-stroke {
+    border-width: 2px !important;
 }
