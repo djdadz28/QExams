@@ -11,6 +11,19 @@
     min-height: 300px;
 }
 
+.row-footer {
+    margin: 0px auto;
+    padding: 10px 0px 10px 0px;
+    min-height: 100px;
+}
+
+.row-question {
+    margin: 0px auto;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px ridge;
+    min-height: 100px;
+}
+
 .footer {
     background-color: #D1C4E9;
     margin: 0px auto;
@@ -33,6 +46,7 @@
 body {
     padding: 80px 0px 0px 0px;
     z-index: 0;
+    overscroll-behavior-y: contain;
 }
 
 .navbar-dark {
@@ -56,13 +70,6 @@ body {
     padding: 10px; 
 }
 
-.tableholder {
-    padding: 10px 0 10px 10px;
-    max-height: 400px;
-    width: auto;
-    overflow: auto;
-}
-
 @media only screen and (min-width:0px) and (max-width:767px){
     .border-left{
       border-left: none !important;
@@ -75,24 +82,11 @@ body {
     overflow: auto;
 }
 
-.row-footer {
-    margin: 0px auto;
-    padding: 10px 0px 10px 0px;
-    min-height: 100px;
-}
-
-.row-question {
-    margin: 0px auto;
-    padding: 10px 0px 10px 0px;
-    border-bottom: 1px ridge;
-    min-height: 100px;
-}
-
 /* .myaudio {
     pointer-events: none;
 } */
 
-input#radio-audio-1 {
+input#radio-audio-1, input#radio-audio-2, input#radio-audio-3, input#radio-audio-4, input#radio-audio-5  {
     transform: scale(1.5);
  }
 
@@ -101,9 +95,13 @@ input#radio-audio-1 {
 }
 
 
-/* table.table tbody tr td,
-table.table thead tr th,
-table.table thead {
-  border-left: 1px solid red;
-  border-right: 1px solid red;
-} */
+.tableholder {
+    padding: 10px 0 10px 10px;
+    max-height: 300px;
+    width: auto;
+    overflow: auto;
+}
+
+.table-text-small {
+    font-size: 12px;
+}

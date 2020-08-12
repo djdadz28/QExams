@@ -16,9 +16,9 @@ var router = express.Router();
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
 app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist/umd')); // redirect popper JS
-app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect bootstrap JS
-app.use('/css', express.static(__dirname + '/node_modules/font-awesome/css/')); // redirect font-awesome JS
-app.use('/fonts', express.static(__dirname + '/node_modules/font-awesome/fonts/')); // redirect font-awesome fonts JS
+app.use('/js', express.static(__dirname + '/node_modules/moment')); // redirect moment JS
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect bootstrap css
+app.use('/css', express.static(__dirname + '/node_modules/font-awesome/css/')); // redirect font-awesome css
 
 // view engine setup
 app.set("view engine","jade")

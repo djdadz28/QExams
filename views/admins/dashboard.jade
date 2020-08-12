@@ -9,9 +9,12 @@ block content
             </button>
             <a class="navbar-brand" href="#"><img src="/images/Q-logo.png" width="150" alt="Site Logo"></a>
             <div class="collapse navbar-collapse" id="Navbar">
+                <!-- <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="#""><span class="fa fa-info fa-lg"></span> Tests</a></li>
+                </ul> -->
                 <span class="navbar-text">
                     <a id="logout" class="loginbutton">
-                        <span class="fa fa-sign-in"></span> Logout
+                        <span class="fa fa-sign-out"></span> Logout
                     </a>
                 </span>
             </div>
@@ -27,41 +30,47 @@ block content
                     <p class="text-muted">Create a new Test ID</p>
                 </div>
             </div>
-            <div class="row row-content">
+            <div class="row row-content">                                           
                 <div class="col-sm-5 text-sm-right mt-3">
-                    <form action="">
+                    <form id="create_form">
                         <div class="form-group row">
-                            <label for="applicant_id" class="col-sm-4 col-form-label">Applicant ID</label>
+                            <label for="applicant_id" class="col-sm-4 col-form-label">Test ID</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="applicant_id" placeholder="Enter App ID">
+                                <input type="text" class="form-control" id="test_id" placeholder="Enter Test ID" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="first_name" class="col-sm-4 col-form-label">First Name</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="first_name" placeholder="Enter First Name">
+                                <input type="text" class="form-control" id="first_name" placeholder="Enter First Name" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="last_name" class="col-sm-4 col-form-label">Last Name</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="last_name" placeholder="Enter Last Name">
+                                <input type="text" class="form-control" id="last_name" placeholder="Enter Last Name" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="email_address" class="col-sm-4 col-form-label">Email Address</label>
-                            <div class="col-sm-7">
-                                <input type="email" class="form-control" id="email_address" placeholder="Enter Email Address">
+                            <div class="col-12 col-sm-7">
+                                <input type="email" class="form-control" id="email" placeholder="Enter Email Address" required>
                             </div>
                         </div>                        
                         <div class="form-group row">
-                            <div class="col-sm-9 d-flex justify-content-end">
+                            <div class="col-sm-9 mt-3 d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary">Create Test ID</button>
                             </div>
                         </div>
                     </form>
+                    <!-- <div>
+                      <button class="btn btn-success" id="updateButton"> Update</button>
+                      <button class="btn btn-danger" id="deleteButton"> Delete</button>
+                    </div>                                    -->
                 </div>
 
+
+                <!-- Unused ID List -->
                 <div class="col-12 col-sm-7 border-left mt-4 mt-sm-0">
                     <div class="row row-header">
                         <div class="col d-flex justify-content-center">
@@ -69,46 +78,17 @@ block content
                         </div>
                     </div>
                     <div class="col-auto tableholder">
-                        <table class="table table-striped table-dark">
+                        <table id="unusedId-table" class="table table-striped table-dark table-sm table-text-small">
                             <thead>
                               <tr>
                                 <th scope="col">Test ID</th>
                                 <th scope="col">First</th>
                                 <th scope="col">Last</th>
                                 <th scope="col">Email</th>
+                                <th scope="col"></th>
                               </tr>
                             </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>DJ Dadz</td>
-                                <td>Eleco</td>
-                                <td>deleco@qualfon.com</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>DJ Dadz</td>
-                                <td>Eleco</td>
-                                <td>deleco@qualfon.com</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>DJ Dadz</td>
-                                <td>Eleco</td>
-                                <td>deleco@qualfon.com</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>DJ Dadz</td>
-                                <td>Eleco</td>
-                                <td>deleco@qualfon.com</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>DJ Dadz</td>
-                                <td>Eleco</td>
-                                <td>deleco@qualfon.com</td>
-                              </tr>
+                            <tbody id="unusedIdContent">
                               
                             </tbody>
                           </table>
@@ -116,122 +96,41 @@ block content
                 </div>
             </div>
             
+            <!-- Database Records -->
             <div class="row row-content">
                 <div class="row row-header justify-content-center">
                     <h4>Database Record</h4>
                 </div>
                 <div class="col-12 database_record">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-sm text-center table-text-small">
                         <thead>
                           <tr>
                             <th scope="col">Test ID</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Date Taken</th>
                             <th scope="col">Critical Exam</th>
-                            <th scope="col">Audio Skills Exam</th>
+                            <th scope="col">Audio Exam</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>DJ Dadz</td>
-                            <td>Eleco</td>
-                            <td>deleco@qualfon.com</td>
-                            <td>9</td>
-                            <td>5</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>DJ Dadz</td>
-                            <td>Eleco</td>
-                            <td>deleco@qualfon.com</td>
-                            <td>9</td>
-                            <td>5</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>DJ Dadz</td>
-                            <td>Eleco</td>
-                            <td>deleco@qualfon.com</td>
-                            <td>9</td>
-                            <td>5</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>DJ Dadz</td>
-                            <td>Eleco</td>
-                            <td>deleco@qualfon.com</td>
-                            <td>9</td>
-                            <td>5</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>DJ Dadz</td>
-                            <td>Eleco</td>
-                            <td>deleco@qualfon.com</td>
-                            <td>9</td>
-                            <td>5</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>DJ Dadz</td>
-                            <td>Eleco</td>
-                            <td>deleco@qualfon.com</td>
-                            <td>9</td>
-                            <td>5</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>DJ Dadz</td>
-                            <td>Eleco</td>
-                            <td>deleco@qualfon.com</td>
-                            <td>9</td>
-                            <td>5</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>DJ Dadz</td>
-                            <td>Eleco</td>
-                            <td>deleco@qualfon.com</td>
-                            <td>9</td>
-                            <td>5</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>DJ Dadz</td>
-                            <td>Eleco</td>
-                            <td>deleco@qualfon.com</td>
-                            <td>9</td>
-                            <td>5</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>DJ Dadz</td>
-                            <td>Eleco</td>
-                            <td>deleco@qualfon.com</td>
-                            <td>9</td>
-                            <td>5</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>DJ Dadz</td>
-                            <td>Eleco</td>
-                            <td>deleco@qualfon.com</td>
-                            <td>9</td>
-                            <td>5</td>
-                          </tr>
-                                                    
+                        <tbody id="scoreResults">
+                        
                         </tbody>
                       </table>
                 </div>
             </div>
+
+
             <div class="row row-content">
                 <div class="footer">
-                    my footer
+                    
                 </div>
             </div>
             
             
         </div>
     </div>
+
+    <script src="/javascripts/index.js"></script>
+    <script src="/javascripts/admin.js"></script>

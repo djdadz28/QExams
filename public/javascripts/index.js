@@ -1,19 +1,31 @@
-$(document).ready(function(){
+var firebaseConfig = {
+    apiKey: "AIzaSyA8fq7AApZPMghtzK6TSGfCGQ5CZzOHGhQ",
+    authDomain: "q-exams.firebaseapp.com",
+    databaseURL: "https://q-exams.firebaseio.com",
+    projectId: "q-exams",
+    storageBucket: "q-exams.appspot.com",
+    messagingSenderId: "498052030565",
+    appId: "1:498052030565:web:33a57e78802406531ae68c",
+    measurementId: "G-MS3W98G8BP"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
-    var firebaseConfig = {
-        apiKey: "AIzaSyA8fq7AApZPMghtzK6TSGfCGQ5CZzOHGhQ",
-        authDomain: "q-exams.firebaseapp.com",
-        databaseURL: "https://q-exams.firebaseio.com",
-        projectId: "q-exams",
-        storageBucket: "q-exams.appspot.com",
-        messagingSenderId: "498052030565",
-        appId: "1:498052030565:web:33a57e78802406531ae68c",
-        measurementId: "G-MS3W98G8BP"
+var auth = firebase.auth();
+
+
+
+$(document).ready(function() {
+
+    if (history.pushState != undefined) {
+        history.pushState(null, null, location.href);
+    }
+    history.back();
+    history.forward();
+    window.onpopstate = function () {
+        history.go(1);
     };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
 
-    var auth = firebase.auth();
 
     $('#loginForm').on('submit', function (e) {
         e.preventDefault();
@@ -27,17 +39,19 @@ $(document).ready(function(){
             firebase.auth().signInWithEmailAndPassword(data.email, data.password)
                     .then(function(authData) {
                         var auth = authData;
-                    window.location.replace("/admins");
+                        window.location.replace("/admins");
                     })
-            .catch(function(error) {
-                console.log("Login Failed!", error);
-                alert(error);
-            });
+                    .catch(function(error) {
+                        $("#loginWarning").text("Incorrect Login Credentials").fadeTo(3000, 300).hide(100, function(){
+                            $("#loginWarning").hide(100);
+                        })
+                    });
         };
     });
 
     $('#logout').on('click', function(e) {
         e.preventDefault();
+        sessionStorage.clear();
         firebase.auth().signOut();
         console.log("logout successfully");
         window.location.replace("/");
@@ -47,12 +61,55 @@ $(document).ready(function(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             var auth = user;
-            console.log("User is: " + auth)
+            // console.log("User is: " + JSON.stringify(auth))
+            console.log("Admin Successfully Logged in")
         } else {
-        // No user is signed in.
             var auth = null;
             console.log("No User")
+
+            if (window.location.pathname == "/admins") {
+                window.location.replace("/");
+            }
         }
     });
 
+
+    document.addEventListener("keyup", function (e) {
+    var keyCode = e.keyCode ? e.keyCode : e.which;
+            if (keyCode == 44) {
+                stopPrntScr();
+            }
+        });
+
+    function stopPrntScr() {
+
+            var inpFld = document.createElement("input");
+            inpFld.setAttribute("value", ".");
+            inpFld.setAttribute("width", "0");
+            inpFld.style.height = "0px";
+            inpFld.style.width = "0px";
+            inpFld.style.border = "0px";
+            document.body.appendChild(inpFld);
+            inpFld.select();
+            document.execCommand("copy");
+            inpFld.remove(inpFld);
+        }
+    function AccessClipboardData() {
+        try {
+            window.clipboardData.setData('text', "Access   Restricted");
+        } catch (err) {
+        }
+    }
+        setInterval(AccessClipboardData(), 300);
+
+    
+        
+
 });
+
+// $(window).blur(function() {
+//     $("body").hide();
+// });
+// $(window).focus(function() {
+//     $("body").show();
+// });
