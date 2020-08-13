@@ -82,7 +82,7 @@ $('document').ready(function() {
 
 function loadUnusedIdTable() {
     var rootRef = database.ref().child("Records");
-    var query = rootRef.orderByChild("test_start_confirmation").equalTo(false)
+    var query = rootRef.orderByChild("ept_start_confirmation").equalTo(false)
     query.on('child_added', function (snap){
     
         var test_id = snap.child("id").val();
