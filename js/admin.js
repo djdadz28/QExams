@@ -110,7 +110,7 @@ function loadFinalResult() {
         var last_name = snap.child("last_name").val();
         var ept_score = snap.child("ept_score").val();
         var date_taken = snap.child("date_taken").val();
-
+        var typing_score = snap.child("typing_score").val()
         var critical_exam_score = snap.child("critical_exam_score").val();
         var audio_exam_score = snap.child("audio_exam_score").val();
         var forSKT = snap.child("forSKT").val();
@@ -118,6 +118,7 @@ function loadFinalResult() {
                                 first_name +"</td><td>" + 
                                 last_name + "</td><td>" + 
                                 date_taken + "</td><td>" +
+                                typing_score + "</td><td>" +
                                 ept_score + "</td><td>" +
                                 critical_exam_score + "</td><td>" + 
                                 audio_exam_score + "</td><td class=\"text-right\"><button id=\"" +snap.key + "\" class=\"btn " + (forSKT ? "btn-success": "btn-danger") + " btn-sm\" onclick=\"activateSKT(this)\">SKT<span class=\"fa fa-check\"></span></button><button id=\"" +snap.key + "\" class=\"btn btn-light btn-sm\" onclick=\"printResult(this)\"><span class=\"fa fa-print\"></span></button><button id=\"" +snap.key + "\" class=\"btn btn-success btn-sm\" onclick=\"reactivateID(this)\"><span class=\"fa fa-key\"></span></button></td></tr>"

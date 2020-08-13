@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Q Typing Test</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link id="favicon" rel="shortcut icon" type="image/png" href="img/Q-favicon.png"/>
+		<!-- build:css css/main.css -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./css/styles.css">
+		<!-- endbuild -->
+	
+		<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+	</head>
+	
+	<body>
+		<nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+			<div class="container">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<a class="navbar-brand" href="#"><img src="./img/Q-logo.png" width="150" alt="Site Logo"></a>
+				<div class="collapse navbar-collapse" id="Navbar">
+					<!-- <ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link" href="#""><span class="fa fa-info fa-lg"></span> Tests</a></li>
+					</ul> -->
+				</div>
+			</div>
+		</nav>
+
+
+		<div id="typingcompletedDialogModal" class="modal fade text-center" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="content">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h4 class="modal-title">Typing Test Result</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-6">
+							<p>Your Top Speed</p>
+							<h3 id="topSpeed">0</h3>
+						</div>
+						<div class="col-6">
+							<p>Your Best Accuracy</p>
+							<h3 id="topAccuracy"></h3>
+						</div>
+					</div>
+				  <div class="row mt-3">
+						<div class="col-6">
+							<button type="submit" id="reattemptButton" class="btn btn-info"></button>
+						</div>	
+						<div class="col-6">
+							<button type="submit" id="proceedButton" class="btn btn-primary">Proceed to next test &nbsp;<span class="fa fa-arrow-right"></span></button>
+						</div>
+					</div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+		
+
+		<div class="container" id="ept_holder">
+			<div class="container-fluid rounded border border-light bg-light">
+				<div class="row row-header border-bottom">
+					<div class="col-12">
+						<h3>Typing Speed Test</h3>
+						<p class="text-muted">
+							<b class="text-info">Instructions:</b>
+							Follow the words inside the green box and type it inside the designated text field below as fast and accurately as you can. You're given 3 attempts to get a passing score and the final result will be based on the highest score you've acquired.
+							The 1 minute timer will start as you start typing.
+						</p>
+					</div>
+				</div>
+				<div class="row row-content" id="content_holder">
+					<div class="row">
+						<div class="col-md-7">
+							<div id="paraContainer" onselectstart="return false">
+								<p id="testPara"></p>
+							</div>
+						</div>
+						<div class="col-md-5 text-center">
+							<div class="row mt-2">				
+								<div class="col-4 col-md-3 ml-2 border bg-white border-success rounded p-2">
+									<p>Time Left</p>
+									<h2 id="timer">1:00</h2>
+								</div>
+								<div class="col-4 col-md-3 ml-2 border bg-white border-success rounded p-2">
+									<p>Speed</p>
+									<h4 id="typingSpeed">0</h4>
+								</div>
+								<div class="col-3 col-md-3 ml-2 border bg-white border-success rounded p-2">
+									<p>Accuracy</p>
+									<h4 id="typingAccuracy">0%</h4>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-md-7" id="typingArea">
+				​			<textarea id="textArea" class="form-control textarea-resize-none" name="textarea" rows="5"onPaste="return false" placeholder="Click here and start typing."></textarea>
+						</div>
+					</div>
+					<div class="col-12 mt-3">
+						<!-- <div class="row row-content-button">
+							<button id="reset" class="btn btn-warning">Reset</button>
+						</div> -->
+					</div>
+				</div>
+			</div>              
+		</div>
+
+
+
+	
+
+		
+
+
+
+
+	<script src="node_modules/jquery/jquery.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="node_modules/moment/moment.js"></script>
+	<script src="./js/index.js"></script>
+    <script src="./js/session.js"></script>
+	<script src="./js/typingtest.js"></script>
+	<script>
+        if(!sessionStorage.getItem('test_id')){
+            window.location.replace('./ept.html');
+        }
+    </script>
+	</body>
+<html>

@@ -67,7 +67,7 @@ $(document).ready(function() {
                             sessionStorage.setItem('page', 1);
                             sessionStorage.setItem('test_id', (test_id.value).toUpperCase());
                             sessionStorage.setItem('date_taken', moment().format('l'));
-                            popupWindow('./initialExam.html')
+                            popupWindow('./typingtest.html')
                         }).catch(function(e){
                             console.error(e)
                         })
@@ -123,12 +123,13 @@ $(document).ready(function() {
             $("#skippedQuestionsModal").modal('toggle')
         }else{
             var ept_score = (checkAnswers(answerHolder, correctAnswers) * 2)
-            
-            
+            var typing = JSON.parse(sessionStorage.getItem('typingScores'));
+            var typingScore = typing[0] + " wpm / " + typing[1] + "%";
+
             var rootRef = database.ref("Records");
             
             $(this).attr("disabled", true).text("Submitting...")
-            rootRef.child(applicant_id).update({'ept_score': ept_score})
+            rootRef.child(applicant_id).update({'ept_score': ept_score, 'typing_score': typingScore})
                     .then(function() {
                         console.log("Successfully Update");
                         sessionStorage.clear();

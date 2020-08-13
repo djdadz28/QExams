@@ -115,3 +115,27 @@ input#radio-audio-1, input#radio-audio-2, input#radio-audio-3, input#radio-audio
 .border-stroke {
     border-width: 2px !important;
 }
+
+
+/* Typing test */
+
+.textarea-resize-none{
+	width:100%;
+	resize: none;
+}
+
+#paraContainer {
+	min-height: 100px;
+	max-height: 350px;
+	font-family: helvetica;
+	font-size: 18px;
+	border: 2px solid #2ECC71;
+	border-radius: 5px;
+	padding: 10px;
+	overflow-y: scroll;
+	background-color: white;
+}
+
+#paraContainer :hover {
+	cursor: default;
+}
