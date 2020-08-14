@@ -18,6 +18,8 @@ var user = {
         ept_start_confirmation: false
 };
 
+var databaseSpawned = false;
+
 
 firebase.auth().onAuthStateChanged(function(user) {
         if (!user) {
@@ -26,7 +28,11 @@ firebase.auth().onAuthStateChanged(function(user) {
             
 })
 
+var getStartDate = "", getEndDate = "";
+
 $('document').ready(function() {
+
+    
 
     //Create Test ID
     $('#create_form').on('submit', function(e) {
@@ -73,14 +79,65 @@ $('document').ready(function() {
             console.log(err);
         });
     });
- 
+    
     loadUnusedIdTable();
-    loadFinalResult()
+    // loadFinalResult()
 
 });
 
 
+
+$('#spawnDateButton').change(function(){
+    getStartDate = $('#startDate').val()
+    getEndDate = $('#endDate').val()
+})
+
+
+$('#spawnDateButton').on('submit', function(e){
+        e.preventDefault();
+        $('#scoreResults').html('');
+        loadFinalResult(getStartDate, getEndDate)
+    })
+
+
+function loadFinalResult(startDate, endDate) {
+
+    startDate = new Date(startDate)
+    endDate = new Date(endDate)
+
+    var rootRef = database.ref().child("Records");
+    var query = rootRef.orderByChild("ept_start_confirmation").equalTo(true)
+    query.on('child_added', function (snap){            
+        var date_taken = snap.child("date_taken").val();
+        var actualDate = new Date(date_taken)
+        if(actualDate >= startDate && actualDate <= endDate){
+            var test_id = snap.child("id").val();
+            var first_name = snap.child("first_name").val();
+            var last_name = snap.child("last_name").val();
+            var ept_score = snap.child("ept_score").val();
+            
+            var typeScore = JSON.parse(snap.child("typing_score").val())
+            var typing_score = typeScore[0] === "In Progress" ? "In Progress" : typeScore[0] + " wpm / " + typeScore[1] + "%"; //To edit soon
+            var critical_exam_score = snap.child("critical_exam_score").val();
+            var audio_exam_score = snap.child("audio_exam_score").val();
+            var forSKT = snap.child("forSKT").val();
+            var applicant = "<tr id=\"" +snap.key + "\" ><td>"+test_id + "</td><td>" + 
+                                    first_name +"</td><td>" + 
+                                    last_name + "</td><td>" + 
+                                    date_taken + "</td><td>" +
+                                    typing_score + "</td><td>" +
+                                    ept_score + "</td><td>" +
+                                    critical_exam_score + "</td><td>" + 
+                                    audio_exam_score + "</td><td class=\"text-right\"><button id=\"" +snap.key + "\" class=\"btn " + (forSKT ? "btn-success": "btn-danger") + " btn-sm\" onclick=\"activateSKT(this)\">SKT<span class=\"fa fa-check\"></span></button>&nbsp;<button id=\"" +snap.key + "\" class=\"btn btn-info btn-sm\" onclick=\"reactivateInitial(this)\"><span class=\"fa fa-key\"></span>1</button>&nbsp;<button id=\"" +snap.key + "\" class=\"btn btn-info btn-sm\" onclick=\"reactivateSKT(this)\"><span class=\"fa fa-key\"></span>2</button>&nbsp;<button id=\"" +snap.key + "\" class=\"btn btn-light btn-sm\" onclick=\"printResult(this)\"><span class=\"fa fa-print\"></span></button>&nbsp;<button id=\"" +snap.key + "\" class=\"btn btn-secondary btn-sm\" onclick=\"updateData(this)\"><span class=\"fa fa-pencil-square-o\"></span></button></td></tr>"
+
+            $('#scoreResults').append(applicant);
+        }
+    });
+};
+
+
 function loadUnusedIdTable() {
+ 
     var rootRef = database.ref().child("Records");
     var query = rootRef.orderByChild("ept_start_confirmation").equalTo(false)
     query.on('child_added', function (snap){
@@ -100,56 +157,118 @@ function loadUnusedIdTable() {
 };
 
 
-function loadFinalResult() {
-    var rootRef = database.ref().child("Records");
-    var query = rootRef.orderByChild("ept_start_confirmation").equalTo(true)
-    query.on('child_added', function (snap){
-    
-        var test_id = snap.child("id").val();
-        var first_name = snap.child("first_name").val();
-        var last_name = snap.child("last_name").val();
-        var ept_score = snap.child("ept_score").val();
-        var date_taken = snap.child("date_taken").val();
-        var typing_score = snap.child("typing_score").val()
-        var critical_exam_score = snap.child("critical_exam_score").val();
-        var audio_exam_score = snap.child("audio_exam_score").val();
-        var forSKT = snap.child("forSKT").val();
-        var applicant = "<tr id=\"" +snap.key + "\" ><td>"+test_id + "</td><td>" + 
-                                first_name +"</td><td>" + 
-                                last_name + "</td><td>" + 
-                                date_taken + "</td><td>" +
-                                typing_score + "</td><td>" +
-                                ept_score + "</td><td>" +
-                                critical_exam_score + "</td><td>" + 
-                                audio_exam_score + "</td><td class=\"text-right\"><button id=\"" +snap.key + "\" class=\"btn " + (forSKT ? "btn-success": "btn-danger") + " btn-sm\" onclick=\"activateSKT(this)\">SKT<span class=\"fa fa-check\"></span></button><button id=\"" +snap.key + "\" class=\"btn btn-light btn-sm\" onclick=\"printResult(this)\"><span class=\"fa fa-print\"></span></button><button id=\"" +snap.key + "\" class=\"btn btn-success btn-sm\" onclick=\"reactivateID(this)\"><span class=\"fa fa-key\"></span></button></td></tr>"
 
-        $('#scoreResults').append(applicant);
-        
-    });
-};
+
+
+function updateData(user){
+
+    $('#updateDataModal').modal('toggle');
+
+    var userData = {
+        test_id: "",
+        firstName: "",
+        lastName: "",
+        typingScore: [],
+        typingSpeed: "",
+        typingAccuracy: "",
+        eptScore: "",
+        writtenTest: "",
+        audioTest: ""
+    }
+    
+    var updateRef = database.ref("Records");
+    var queryRef = database.ref("Records/" + user.id);
+    queryRef.once('value', function(snap){
+        userData.firstName = snap.child('first_name').val()
+        userData.lastName = snap.child('last_name').val()
+        userData.typingScore = JSON.parse(snap.child('typing_score').val()) || [0,0]
+        userData.typingSpeed = userData.typingScore[0] || null;
+        userData.typingAccuracy = userData.typingScore[1] || null;
+        userData.eptScore = snap.child('ept_score').val()
+        userData.writtenTest = snap.child('critical_exam_score').val()
+        userData.audioTest = snap.child('audio_exam_score').val();
+
+        $('#updateFirstName').attr('value', userData.firstName)
+        $('#updateLastName').attr('value', userData.lastName)
+        $('#updateTypingSpeed').attr('value', userData.typingSpeed)
+        $('#updateTypingAccuracy').attr('value', userData.typingAccuracy)
+        $('#updateEptScore').attr('value', userData.eptScore)
+        $('#updateCriticalExam').attr('value', userData.writtenTest)
+        $('#updateAudioExam').attr('value', userData.audioTest)
+
+        $('#updateFirstName').change(function(){
+            userData.firstName = $(this).val()
+            console.log(userData.firstName)
+        })
+        $('#updateLastName').change(function(){
+            userData.lastName = $(this).val()
+            console.log(userData.lastName)
+        })
+        $('#updateTypingSpeed').change(function(){
+            userData.typingSpeed = $(this).val()
+        })
+        $('#updateTypingAccuracy').change(function(){
+            userData.typingAccuracy = $(this).val()
+        })
+        $('#updateEptScore').change(function(){
+            userData.eptScore = $(this).val()
+        })
+        $('#updateCriticalExam').change(function(){
+            userData.writtenTest = $(this).val()
+        })
+        $('#updateAudioExam').change(function(){
+            userData.audioTest = $(this).val()
+        })
+
+
+    }).then(function() {
+        $('#updateDataSubmit').click(function() {
+            updateRef.child(user.id).update(
+                {
+                    first_name: (userData.firstName).toUpperCase(),
+                    last_name: (userData.lastName).toUpperCase(),
+                    typing_score: "[" + userData.typingSpeed + "," + userData.typingAccuracy + "]",
+                    ept_score: userData.eptScore,
+                    critical_exam_score: userData.writtenTest,
+                    audio_exam_score: userData.audioTest
+                }
+            ).then(function() {
+                $("#updateDataModal").modal('toggle');
+                window.location.reload();
+                
+            }).catch(function(e){
+                console.error(e)
+            })
+        })
+    }).catch(function(e){
+        console.error(e)
+    })
+
+ 
+}
 
 
 
 function activateSKT(user){
-        var updateRef = database.ref("Records");
-        var checkRef = database.ref("Records/" + user.id);
-        var activated;
-        checkRef.once('value').then(function(snap) {
-            activated = snap.child("forSKT").val()
-            if (activated) {
-                updateRef.child(user.id).update({forSKT: false}).then(function() {
-                    $(user).addClass('btn-danger').removeClass('btn-success')
-                }).catch(function(e){
-                    console.error(e)
-                })
-                }else{
-                updateRef.child(user.id).update({forSKT: true}).then(function() {
-                    $(user).addClass('btn-success').removeClass('btn-danger')
-                }).catch(function(e){
-                    console.error(e)
-                })
-            }
-        })
+    var updateRef = database.ref("Records");
+    var checkRef = database.ref("Records/" + user.id);
+    var activated;
+    checkRef.once('value').then(function(snap) {
+        activated = snap.child("forSKT").val()
+        if (activated) {
+            updateRef.child(user.id).update({forSKT: false}).then(function() {
+                $(user).addClass('btn-danger').removeClass('btn-success')
+            }).catch(function(e){
+                console.error(e)
+            })
+            }else{
+            updateRef.child(user.id).update({forSKT: true}).then(function() {
+                $(user).addClass('btn-success').removeClass('btn-danger')
+            }).catch(function(e){
+                console.error(e)
+            })
+        }
+    })
         
 }
 
@@ -166,16 +285,26 @@ function onDelete(user){
     
 }
 
-function reactivateID(user){
+function reactivateSKT(user){
     var updateRef = database.ref("Records");
     updateRef.child(user.id).update({test_start_confirmation: false}).then(function() {
         // user.parentNode.parentNode.remove()
-        alert("Successfully Reactivated")
-        console.log("Reactivated Successfully")
+        alert("Successfully Unlocked SKT Exam")
     }).catch(function(e){
         console.error(e)
     })
 }
+
+function reactivateInitial(user){
+    var updateRef = database.ref("Records");
+    updateRef.child(user.id).update({ept_start_confirmation: false}).then(function() {
+        // user.parentNode.parentNode.remove()
+        alert("Successfully Unlocked Initial Exam")
+    }).catch(function(e){
+        console.error(e)
+    })
+}
+
 
 function printResult(user){
     var rootRef = database.ref("Records/" + user.id)

@@ -61,12 +61,11 @@ $(document).ready(function() {
                     $('#applicant_name').text(snap.child("first_name").val() +" "+snap.child("last_name").val())
 
                     $("#eptConfirmStartButton").click(function() {
-                        updateRef.child(test_id.value.toUpperCase()).update({ept_start_confirmation: true, date_taken: moment().format('l')}).then(function() {
+                        updateRef.child(test_id.value.toUpperCase()).update({ept_start_confirmation: true, typing_score: "[\"In Progress\",\"In Progress\"]", date_taken: moment().format('l')}).then(function() {
                             $('#eptStartConfirmationModal').modal('toggle');
                             $('body').hide()
                             sessionStorage.setItem('page', 1);
                             sessionStorage.setItem('test_id', (test_id.value).toUpperCase());
-                            sessionStorage.setItem('date_taken', moment().format('l'));
                             popupWindow('./typingtest.html')
                         }).catch(function(e){
                             console.error(e)
@@ -118,18 +117,16 @@ $(document).ready(function() {
             }
         }
 
-        if (noAnswerCount > 0) {
+        if (noAnswerCount > 50) {
             $("#skipped_questions").html(noAnswer)
             $("#skippedQuestionsModal").modal('toggle')
         }else{
             var ept_score = (checkAnswers(answerHolder, correctAnswers) * 2)
-            var typing = JSON.parse(sessionStorage.getItem('typingScores'));
-            var typingScore = typing[0] + " wpm / " + typing[1] + "%";
 
             var rootRef = database.ref("Records");
             
             $(this).attr("disabled", true).text("Submitting...")
-            rootRef.child(applicant_id).update({'ept_score': ept_score, 'typing_score': typingScore})
+            rootRef.child(applicant_id).update({'ept_score': ept_score})
                     .then(function() {
                         console.log("Successfully Update");
                         sessionStorage.clear();
@@ -233,6 +230,7 @@ function pageHandler(page){
         $("#pill_2").removeClass("active bg-success")
         $("#pill_3").removeClass("active bg-success")
         $("#pill_4").removeClass("active bg-success")
+        $("#instructions").text('Select the best answer')
     }else if(currentPage === 2){
         $("#div_grammar_1").hide()
         $("#div_grammar_2").show().focus()
@@ -245,6 +243,7 @@ function pageHandler(page){
         $("#pill_2").addClass("active bg-success").removeClass("disabled")
         $("#pill_3").removeClass("active bg-success")
         $("#pill_4").removeClass("active bg-success")
+        $("#instructions").html('Select the underlined word or phrase that is <i>incorrect</i>.')
     }else if(currentPage === 3){
         $("#div_grammar_1").hide()
         $("#div_grammar_2").hide()
@@ -257,6 +256,7 @@ function pageHandler(page){
         $("#pill_2").removeClass("active bg-success")
         $("#pill_3").addClass("active bg-success").removeClass("disabled")
         $("#pill_4").removeClass("active bg-success")
+        $("#instructions").text('Select the best answer')
     }else if(currentPage === 4){
         $("#div_grammar_1").hide()
         $("#div_grammar_2").hide()
@@ -269,6 +269,7 @@ function pageHandler(page){
         $("#pill_2").removeClass("active bg-success")
         $("#pill_3").removeClass("active bg-success")
         $("#pill_4").addClass("active bg-success").removeClass("disabled")
+        $("#instructions").text('Select the best answer')
     }
     scrollTop();
 }

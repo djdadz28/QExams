@@ -1,5 +1,3 @@
-
-
 var timer = document.getElementById("timer");
 var timeElapsed = 0;
 var setTimer = 61;
@@ -178,7 +176,18 @@ $(document).ready(function() {
 	})
 
 	$("#proceedButton").click(function() {
-		window.location.replace('./initialExam.html');
+		var typing_score = sessionStorage.getItem('typingScores');
+		var applicant_id = sessionStorage.getItem('test_id');
+		var rootRef = database.ref("Records");
+
+            
+		$(this).attr("disabled", true).text("Submitting...")
+		rootRef.child(applicant_id).update({'typing_score': typing_score})
+				.then(function() {
+					window.location.replace('./initialExam.html');
+				}).catch(function(e){
+					console.error(e)
+		})
 	})
 });
 

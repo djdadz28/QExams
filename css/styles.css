@@ -139,3 +139,7 @@ input#radio-audio-1, input#radio-audio-2, input#radio-audio-3, input#radio-audio
 #paraContainer :hover {
 	cursor: default;
 }
+
+#updateDataModal span {
+    font-size: 14px;
+}

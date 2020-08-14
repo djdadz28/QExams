@@ -7,3 +7,4 @@ firebase.json
 database.rules.json
 audio
 rules
+db_backup
