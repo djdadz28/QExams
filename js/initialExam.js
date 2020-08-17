@@ -133,6 +133,7 @@ $(document).ready(function() {
                         sessionStorage.clear();
                         $("#completedDialogModal").modal('toggle')
                     }).catch(function(e){
+                        $(this).attr("disabled", false).text("Submit Again")
                         console.error(e)
             })
         }

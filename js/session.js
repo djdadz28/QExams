@@ -30,7 +30,7 @@ $('document').ready(function() {
                         
                         $('#confirmStartButton').click(function() {
                                 var date_taken = Date.parse(new Date());
-                                updateRef.child(test_id.value.toUpperCase()).update({test_start_confirmation: true, date_taken: date_taken}).then(function() {
+                                updateRef.child(test_id.value.toUpperCase()).update({test_start_confirmation: true, critical_exam_score: "In Progress", date_taken: date_taken}).then(function() {
                                 sessionStorage.setItem('test_id', test_id.value.toUpperCase());
                                 sessionStorage.setItem('written_test_completed', false);             
                                 $('#startConfirmationModal').modal('toggle');
