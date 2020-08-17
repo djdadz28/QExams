@@ -77,36 +77,36 @@
 					</div>
 				</div>
 				<div class="row row-content" id="content_holder">
-					<div class="row">
-						<div class="col-md-7">
-							<div id="paraContainer" onselectstart="return false">
-								<p id="testPara"></p>
-							</div>
+					<div class="col-lg-7 textarea-content" >
+						<div id="paraContainer" onselectstart="return false">
+							<textarea id="testPara" class="form-control textarea-resize-none" name="textarea" rows="9" readonly></textarea>
 						</div>
-						<div class="col-md-5 text-center">
-							<div class="row mt-2">				
-								<div class="col-4 col-md-3 ml-2 border bg-white border-success rounded p-2">
-									<p>Time Left</p>
-									<h2 id="timer">1:00</h2>
-								</div>
-								<div class="col-4 col-md-3 ml-2 border bg-white border-success rounded p-2">
-									<p>Speed</p>
-									<h4 id="typingSpeed">0</h4>
-								</div>
-								<div class="col-3 col-md-3 ml-2 border bg-white border-success rounded p-2">
-									<p>Accuracy</p>
-									<h4 id="typingAccuracy">0%</h4>
-								</div>
-							</div>
+						<div class="typingTextArea">
+							<textarea id="textArea" class="form-control textarea-resize-none"  name="textarea" rows="5" placeholder="Click and Start typing..." onPaste="return false"></textarea>
 						</div>
-						<div class="col-12 col-md-7" id="typingArea">
-				​			<textarea id="textArea" class="form-control textarea-resize-none" name="textarea" rows="5"onPaste="return false" placeholder="Click here and start typing."></textarea>
+					</div>
+					<div class="col-lg-5 text-center">
+						<div class="row mt-2 justify-content-sm-left">
+							<div class="col-3 col-lg-3 ml-2 border bg-white rounded p-1">
+								<p class="small-text">Time Left</p>
+								<h4 id="timer">1:00</h4>
+							</div>
+							<div class="col-3 col-lg-3 ml-2 border bg-white rounded p-1">
+								<p class="small-text">Speed</p>
+								<h4 id="typingSpeed">0</h4>
+							</div>
+							<div class="col-3 col-lg-3 ml-2 border bg-white rounded p-1">
+								<p class="small-text">Accuracy</p>
+								<h4 id="typingAccuracy">0%</h4>
+							</div>
 						</div>
 					</div>
 					<div class="col-12 mt-3">
-						<!-- <div class="row row-content-button">
-							<button id="reset" class="btn btn-warning">Reset</button>
-						</div> -->
+						<footer class="page-footer font-small teal pt-4">
+							<div class="footer-copyright text-center py-3">© 2020 Copyright:
+								<a href="https://ph.linkedin.com/in/djdadz"> DJ Dadz Eleco</a>
+							</div>
+						</footer>
 					</div>
 				</div>
 			</div>              

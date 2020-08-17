@@ -231,7 +231,7 @@ $('document').ready(function() {
     $('#nextButton_1').click(function() {
         if (audio_exam_answers.question_11 === "") {
             console.log("You forgot to select an answer")
-            $("#incomplete_answer_warning_1").text("PLease select an answer").fadeTo(3000, 300).hide(100, function(){
+            $("#incomplete_answer_warning_1").text("Please select an answer").fadeTo(3000, 300).hide(100, function(){
                     $("#incomplete_answer_warning_1").hide(100);
             })
         }else{
@@ -251,7 +251,7 @@ $('document').ready(function() {
     $('#nextButton_2').click(function() {
         if (audio_exam_answers.question_12 === "") {
             console.log("You forgot to select an answer")
-            $("#incomplete_answer_warning_2").text("PLease select an answer").fadeTo(3000, 300).hide(100, function(){
+            $("#incomplete_answer_warning_2").text("Please select an answer").fadeTo(3000, 300).hide(100, function(){
                     $("#incomplete_answer_warning_2").hide(100);
             })
         }else{
@@ -272,7 +272,7 @@ $('document').ready(function() {
     $('#nextButton_3').click(function() {
         if (audio_exam_answers.question_13 === "") {
             console.log("You forgot to select an answer")
-            $("#incomplete_answer_warning_3").text("PLease select an answer").fadeTo(3000, 300).hide(100, function(){
+            $("#incomplete_answer_warning_3").text("Please select an answer").fadeTo(3000, 300).hide(100, function(){
                     $("#incomplete_answer_warning_3").hide(100);
             })
         }else{
@@ -293,7 +293,7 @@ $('document').ready(function() {
     $('#nextButton_4').click(function() {
         if (audio_exam_answers.question_14 === "") {
             console.log("You forgot to select an answer")
-            $("#incomplete_answer_warning_4").text("PLease select an answer").fadeTo(3000, 300).hide(100, function(){
+            $("#incomplete_answer_warning_4").text("Please select an answer").fadeTo(3000, 300).hide(100, function(){
                     $("#incomplete_answer_warning_4").hide(100);
             })
         }else{
@@ -342,7 +342,6 @@ $('document').ready(function() {
                 audio_exam_result: Results[1][1],
                 critical_exam_score: Results[0][0],
                 audio_exam_result: Results[0][1],
-                date_taken: sessionStorage.getItem('date_taken'),
                 completion_status: true,
                 answers: all_answers
             }

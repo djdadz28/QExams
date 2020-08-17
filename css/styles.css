@@ -126,20 +126,45 @@ input#radio-audio-1, input#radio-audio-2, input#radio-audio-3, input#radio-audio
 
 #paraContainer {
 	min-height: 100px;
-	max-height: 350px;
+    max-height: 350px;
+    min-width: 100%;
 	font-family: helvetica;
 	font-size: 18px;
-	border: 2px solid #2ECC71;
+	border: 2px solid #00a7e1;
 	border-radius: 5px;
 	padding: 10px;
-	overflow-y: scroll;
-	background-color: white;
+	overflow-y: hidden;
+    background-color: white;
+    /* z-index: -1;   #17a2b8 */
 }
 
 #paraContainer :hover {
 	cursor: default;
 }
 
+#testPara {
+    background: white;
+}
+
 #updateDataModal span {
     font-size: 14px;
+}
+
+.typingTextArea {
+    min-height: 100px;
+    max-height: 350px;
+    min-width: 100%;
+	font-family: helvetica;
+	font-size: 18px;
+	padding: 10px;
+	overflow-y: hidden;
+    background-color: white;
+}
+
+.small-text {
+    font-size: 13px;
+}
+
+.print-small-text {
+    font-size: 18px;
 }

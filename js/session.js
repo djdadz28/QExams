@@ -29,10 +29,10 @@ $('document').ready(function() {
                         $('#applicant_name').text(snap.child("first_name").val() +" "+snap.child("last_name").val())
                         
                         $('#confirmStartButton').click(function() {
-                                updateRef.child(test_id.value.toUpperCase()).update({test_start_confirmation: true}).then(function() {
+                                var date_taken = Date.parse(new Date());
+                                updateRef.child(test_id.value.toUpperCase()).update({test_start_confirmation: true, date_taken: date_taken}).then(function() {
                                 sessionStorage.setItem('test_id', test_id.value.toUpperCase());
-                                sessionStorage.setItem('written_test_completed', false);                           
-                                sessionStorage.setItem('date_taken', moment().format('l'))
+                                sessionStorage.setItem('written_test_completed', false);             
                                 $('#startConfirmationModal').modal('toggle');
                                 $('body').hide()
                                 

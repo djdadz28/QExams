@@ -7,15 +7,14 @@ var textArea = document.getElementById("textArea");
 var start = false
 
 var passage1 = "Warm up your fingers by typing these short test instructions. The test text is shown in the upper part of the screen. Type it as quickly and accurately as possible until the test time is up. The text you have typed is shown in the lower part of the screen. There you can see if you have made any typing errors. You can use backspace to correct typing errors, but do not spend too much time going back. Do not press enter after each line - only when the paragraph ends.";
-var passage2 = "Aesop's Fables, the fables originally belonged to the oral tradition and were not collected for some three centuries after Aesop's death. By that time a variety of other stories, jokes and proverbs were being ascribed to him, although some of that material was from sources earlier than him or came from beyond the Greek cultural sphere. The process of inclusion has continued until the present, with some of the fables unrecorded before the Late Middle Ages and others arriving from outside Europe. The process is continuous and new stories are still being added to the Aesop corpus, even when they are demonstrably more recent work and sometimes from known authors.";
-var passage3 = "Web designers are expected to have an awareness of usability and if their role involves creating mark up then they are also expected to be up to date with web accessibility guidelines. The different areas of web design include web graphic design, interface design, authoring, including standardised code and proprietary software, user experience design, and search engine optimization.";
+var passage2 = "Web designers are expected to have an awareness of usability and if their role involves creating mark up then they are also expected to be up to date with web accessibility guidelines. The different areas of web design include web graphic design, interface design, authoring, including standardized code and proprietary software, user experience design, and search engine optimization.";
 
 var generatePassage = function(){
 
-var passages = [passage1, passage2, passage3];
-var randomNumber = Math.floor(Math.random()*(3))
-testPara.innerHTML = passages[randomNumber];
-
+	var passages = [passage1, passage2];
+	var randomNumber = Math.floor(Math.random()*(2))
+	var actualPassage = passages[randomNumber];
+	return actualPassage;
 };
 
 
@@ -38,7 +37,11 @@ $(function () {
             }
         }
     });
+
+	
 });
+
+
 
 function calculateScore() {
 	var paraSubmitted = textArea.value;
@@ -155,7 +158,9 @@ function countdown(seconds) {
 
 $(document).ready(function() {
 
-	generatePassage();
+
+	var paragraph = generatePassage();
+	testPara.innerHTML = paragraph;
 	
 	if (history.pushState != undefined) {
 	history.pushState(null, null, location.href);

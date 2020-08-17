@@ -61,7 +61,8 @@ $(document).ready(function() {
                     $('#applicant_name').text(snap.child("first_name").val() +" "+snap.child("last_name").val())
 
                     $("#eptConfirmStartButton").click(function() {
-                        updateRef.child(test_id.value.toUpperCase()).update({ept_start_confirmation: true, typing_score: "[\"In Progress\",\"In Progress\"]", date_taken: moment().format('l')}).then(function() {
+                        var date_taken = Date.parse(new Date());
+                        updateRef.child(test_id.value.toUpperCase()).update({ept_start_confirmation: true, typing_score: JSON.stringify(['In Progress', 'In Progress']), date_taken: date_taken}).then(function() {
                             $('#eptStartConfirmationModal').modal('toggle');
                             $('body').hide()
                             sessionStorage.setItem('page', 1);
@@ -117,7 +118,7 @@ $(document).ready(function() {
             }
         }
 
-        if (noAnswerCount > 50) {
+        if (noAnswerCount > 0) {
             $("#skipped_questions").html(noAnswer)
             $("#skippedQuestionsModal").modal('toggle')
         }else{

@@ -8,7 +8,8 @@ var print = {
         critical_exam_result: sessionStorage.getItem('critical_exam_result'),
         audio_exam_score: sessionStorage.getItem('audio_exam_score'),
         audio_exam_result: sessionStorage.getItem('audio_exam_result'),
-        ept_score: sessionStorage.getItem('ept_score')
+        ept_score: sessionStorage.getItem('ept_score'),
+        typing_score: JSON.parse(sessionStorage.getItem('typing_score'))
 };
 
 
@@ -28,7 +29,7 @@ $('#ans_12').text("Answer: " + print.answers.question_12)
 $('#ans_13').text("Answer: " + print.answers.question_13)
 $('#ans_14').text("Answer: " + print.answers.question_14)
 $('#ans_15').text("Answer: " + print.answers.question_15)
-$('#ept_score').text(print.ept_score + "/100")
+$('#initialTest').text(print.typing_score[0] + "(" + print.typing_score[1] + "%) and " + print.ept_score )
 $('#audio_result').text(print.audio_exam_score + "/5")
 $('#written_result').text(print.critical_exam_score + "/10")
 $('#date_taken').text("Test Date: " +print.date_taken)

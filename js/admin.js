@@ -28,7 +28,6 @@ firebase.auth().onAuthStateChanged(function(user) {
             
 })
 
-var getStartDate = "", getEndDate = "";
 
 $('document').ready(function() {
 
@@ -87,30 +86,26 @@ $('document').ready(function() {
 
 
 
-$('#spawnDateButton').change(function(){
-    getStartDate = $('#startDate').val()
-    getEndDate = $('#endDate').val()
-})
-
-
 $('#spawnDateButton').on('submit', function(e){
         e.preventDefault();
         $('#scoreResults').html('');
+        var getStartDate = $('#startDate').val()
+        var getEndDate = $('#endDate').val()
         loadFinalResult(getStartDate, getEndDate)
     })
 
 
 function loadFinalResult(startDate, endDate) {
 
-    startDate = new Date(startDate)
-    endDate = new Date(endDate)
+    var myStartDate = new Date(startDate).setHours(0,0,0,0)
+    var myEndDate = new Date(endDate).setHours(23,0,0,0)
 
     var rootRef = database.ref().child("Records");
-    var query = rootRef.orderByChild("ept_start_confirmation").equalTo(true)
+    var query = rootRef.orderByChild("date_taken").startAt(myStartDate);
     query.on('child_added', function (snap){            
         var date_taken = snap.child("date_taken").val();
-        var actualDate = new Date(date_taken)
-        if(actualDate >= startDate && actualDate <= endDate){
+        var ept_start_confirmation = snap.child("ept_start_confirmation").val();
+        if(date_taken <= myEndDate && ept_start_confirmation){
             var test_id = snap.child("id").val();
             var first_name = snap.child("first_name").val();
             var last_name = snap.child("last_name").val();
@@ -124,7 +119,7 @@ function loadFinalResult(startDate, endDate) {
             var applicant = "<tr id=\"" +snap.key + "\" ><td>"+test_id + "</td><td>" + 
                                     first_name +"</td><td>" + 
                                     last_name + "</td><td>" + 
-                                    date_taken + "</td><td>" +
+                                    moment(date_taken).format('l') + "</td><td>" +
                                     typing_score + "</td><td>" +
                                     ept_score + "</td><td>" +
                                     critical_exam_score + "</td><td>" + 
@@ -322,6 +317,7 @@ function printResult(user){
         sessionStorage.setItem('audio_exam_score', snap.child("audio_exam_score").val())
         sessionStorage.setItem('audio_exam_result', snap.child("audio_exam_result").val())
         sessionStorage.setItem('ept_score', snap.child("ept_score").val())
+        sessionStorage.setItem('typing_score', snap.child("typing_score").val())
 
         myPopup('./printResult.html','Print Result')
 
