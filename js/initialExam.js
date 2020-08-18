@@ -61,10 +61,10 @@ $(document).ready(function() {
                     $('#applicant_name').text(snap.child("first_name").val() +" "+snap.child("last_name").val())
 
                     $("#eptConfirmStartButton").click(function() {
-                        
-                        var date_taken = moment.tz(new Date(), "Asia/Hong_Kong").format();
 
-                        updateRef.child(test_id.value.toUpperCase()).update({ept_start_confirmation: true, typing_score: JSON.stringify(['In Progress', 'In Progress']), date_taken: date_taken}).then(function() {
+                        var date_taken = moment.tz(new Date(), "Asia/Manila").format();
+
+                        updateRef.child(test_id.value.toUpperCase()).update({ept_start_confirmation: true, typing_score: JSON.stringify(['In Progress', 'In Progress']), date_taken: date_taken, typing_start_time: date_taken}).then(function() {
                             $('#eptStartConfirmationModal').modal('toggle');
                             $('body').hide()
                             sessionStorage.setItem('page', 1);
@@ -125,11 +125,11 @@ $(document).ready(function() {
             $("#skippedQuestionsModal").modal('toggle')
         }else{
             var ept_score = (checkAnswers(answerHolder, correctAnswers) * 2)
-
+            var ept_end_time = moment.tz(new Date(), "Asia/Manila").format();
             var rootRef = database.ref("Records");
             
             $(this).attr("disabled", true).text("Submitting...")
-            rootRef.child(applicant_id).update({'ept_score': ept_score})
+            rootRef.child(applicant_id).update({'ept_score': ept_score, 'ept_end_time': ept_end_time})
                     .then(function() {
                         console.log("Successfully Update");
                         sessionStorage.clear();

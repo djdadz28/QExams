@@ -29,7 +29,7 @@ $('document').ready(function() {
                         $('#applicant_name').text(snap.child("first_name").val() +" "+snap.child("last_name").val())
                         
                         $('#confirmStartButton').click(function() {
-                                var date_taken = moment.tz(new Date(), "Asia/Hong_Kong").format();
+                                var date_taken = moment.tz(new Date(), "Asia/Manila").format();
                                 updateRef.child(test_id.value.toUpperCase()).update({test_start_confirmation: true, critical_exam_score: "In Progress", date_taken: date_taken}).then(function() {
                                 sessionStorage.setItem('test_id', test_id.value.toUpperCase());
                                 sessionStorage.setItem('written_test_completed', false);             

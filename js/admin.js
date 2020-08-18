@@ -248,8 +248,6 @@ function updateData(user){
                 }
             ).then(function() {
                 $("#updateDataModal").modal('toggle');
-                window.location.reload();
-                
             }).catch(function(e){
                 console.error(e)
             })
@@ -261,6 +259,11 @@ function updateData(user){
  
 }
 
+function scrollTop(){
+    $('html, body').animate({
+        scrollTop: $('#scoreResults').offset().top
+    }, 200);
+}
 
 
 function activateSKT(user){
@@ -353,3 +356,43 @@ function myPopup(url, windowname, w, h, x, y)
 {
     window.open(url, windowname, "resizable=no, toolbar=no, scrollbars=no, menubar=no, status=no, directories=no, width=" + w + ", height=" + h + ", left=" + x + ", top=" + y);
 }
+
+
+// Change date Code
+// function changeDate(){
+//     var changedRecords = {}
+
+//     for (var property in Records) {
+//         if (Records.hasOwnProperty(property)) {
+//             // var myStartDate = moment.tz(Records[property].date_taken, "Asia/Manila").format()
+//             var myStartDate = moment.tz(new Date(), "Asia/Manila").format()
+//             changedRecords[property] = myStartDate
+//         }
+//     }
+    
+//     for(var property in changedRecords){
+//         if (changedRecords.hasOwnProperty(property)) {
+//             changeDateFormat(property, changedRecords[property])
+//         }
+        
+//     }
+
+//     function changeDateFormat(user, date_value){
+//         var updateRef = database.ref("Records");
+//         updateRef.child(user).update({date_taken: date_value}).then(function() {
+//             console.log("Updated: " + user)
+//         }).catch(function(e){
+//             console.error(e)
+//         })
+//     }
+
+// }
+
+
+
+
+
+
+
+
+

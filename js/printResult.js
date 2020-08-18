@@ -2,7 +2,7 @@ var print = {
         id: sessionStorage.getItem('test_id'),
         first_name: sessionStorage.getItem('first_name'),
         last_name: sessionStorage.getItem('last_name'),
-        date_taken: JSON.parse(sessionStorage.getItem('date_taken')),
+        date_taken: sessionStorage.getItem('date_taken'),
         answers: JSON.parse(sessionStorage.getItem('answers')),
         critical_exam_score: sessionStorage.getItem('critical_exam_score'),
         critical_exam_result: sessionStorage.getItem('critical_exam_result'),
@@ -13,7 +13,7 @@ var print = {
 };
 
 
-$('#titlename').text(print.first_name + " " + print.last_name)
+$('#titlename').html(print.first_name + " " + print.last_name)
 $('#ans_1').text("Answer: $" + print.answers.question_1)
 $('#ans_2').text("Answer: " + print.answers.question_2)
 $('#ans_3').text("Answer: " + print.answers.question_3 + " mph")

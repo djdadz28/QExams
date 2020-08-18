@@ -334,7 +334,7 @@ $('document').ready(function() {
             var answer_2 = JSON.parse(sessionStorage.getItem('audio_answers'));
             var applicant_id = sessionStorage.getItem('test_id').toUpperCase();
             var all_answers = Object.assign(answer_1, answer_2)
-
+            var sktExam_end_time = moment.tz(new Date(), "Asia/Manila").format();
             var Results = testResult(all_answers);
 
             var test_result = {
@@ -343,7 +343,8 @@ $('document').ready(function() {
                 critical_exam_score: Results[0][0],
                 audio_exam_result: Results[0][1],
                 completion_status: true,
-                answers: all_answers
+                answers: all_answers,
+                sktExam_end_time: sktExam_end_time
             }
             
 
