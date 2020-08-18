@@ -13,7 +13,7 @@ var print = {
 };
 
 
-$('#titlename').html(print.first_name + " " + print.last_name)
+$('#titlename').text(print.first_name + " " + print.last_name)
 $('#ans_1').text("Answer: $" + print.answers.question_1)
 $('#ans_2').text("Answer: " + print.answers.question_2)
 $('#ans_3').text("Answer: " + print.answers.question_3 + " mph")
