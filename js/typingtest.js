@@ -7,7 +7,7 @@ var textArea = document.getElementById("textArea");
 var start = false
 
 var passage1 = "Warm up your fingers by typing these short test instructions. The test text is shown in the upper part of the screen. Type it as quickly and accurately as possible until the test time is up. The text you have typed is shown in the lower part of the screen. There you can see if you have made any typing errors. You can use backspace to correct typing errors, but do not spend too much time going back. Do not press enter after each line - only when the paragraph ends.";
-var passage2 = "Web designers are expected to have an awareness of usability and if their role involves creating mark up then they are also expected to be up to date with web accessibility guidelines. The different areas of web design include web graphic design, interface design, authoring, including standardized code and proprietary software, user experience design, and search engine optimization.";
+var passage2 = "While dreams and desires in life give us purpose, discipline molds and polish our path to attain that purpose. Discipline means to follow rules or do things in regular order. It is a very important part of life. Children should be taught to follow discipline while studying, eating or playing. Adults should also lead disciplined lives. Schools and places of work teach us discipline. Friends can also teach each other ways to follow rules and behave properly. Discipline helps us to grow up and become happy and successful.";
 
 var generatePassage = function(){
 
