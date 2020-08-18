@@ -365,7 +365,7 @@ function myPopup(url, windowname, w, h, x, y)
 //     for (var property in Records) {
 //         if (Records.hasOwnProperty(property)) {
 //             // var myStartDate = moment.tz(Records[property].date_taken, "Asia/Manila").format()
-//             var myStartDate = moment.tz(new Date(), "Asia/Manila").format()
+//             var myStartDate = moment.tz(new Date(Records[property].date_taken), "Asia/Manila").format()
 //             changedRecords[property] = myStartDate
 //         }
 //     }
