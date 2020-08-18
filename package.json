@@ -26,6 +26,7 @@
     "font-awesome": "4.7.0",
     "jquery": "1.9.1",
     "lite-server": "2.5.4",
+    "moment-timezone": "^0.5.31",
     "popper.js": "1.16.0"
   },
   "devDependencies": {

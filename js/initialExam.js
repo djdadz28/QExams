@@ -61,7 +61,9 @@ $(document).ready(function() {
                     $('#applicant_name').text(snap.child("first_name").val() +" "+snap.child("last_name").val())
 
                     $("#eptConfirmStartButton").click(function() {
-                        var date_taken = Date.parse(new Date());
+                        
+                        var date_taken = moment.tz(new Date(), "Asia/Hong_Kong").format();
+
                         updateRef.child(test_id.value.toUpperCase()).update({ept_start_confirmation: true, typing_score: JSON.stringify(['In Progress', 'In Progress']), date_taken: date_taken}).then(function() {
                             $('#eptStartConfirmationModal').modal('toggle');
                             $('body').hide()

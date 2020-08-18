@@ -95,6 +95,7 @@ $('document').ready(function() {
 
 
 
+
 $('#spawnDateButton').on('submit', function(e){
         e.preventDefault();
         $('#scoreResults').html('');
@@ -104,10 +105,11 @@ $('#spawnDateButton').on('submit', function(e){
     })
 
 
+
 function loadFinalResult(startDate, endDate) {
 
-    var myStartDate = new Date(startDate).setHours(0,0,0,0)
-    var myEndDate = new Date(endDate).setHours(23,0,0,0)
+    var myStartDate = moment.tz(startDate, "Asia/Hong_Kong").startOf('day').format()
+    var myEndDate = moment.tz(endDate, "Asia/Hong_Kong").endOf('day').format()
 
     var rootRef = database.ref().child("Records");
     var query = rootRef.orderByChild("date_taken").startAt(myStartDate);
@@ -215,22 +217,21 @@ function updateData(user){
         })
         $('#updateLastName').change(function(){
             userData.lastName = $(this).val()
-            console.log(userData.lastName)
         })
         $('#updateTypingSpeed').change(function(){
-            userData.typingSpeed = $(this).val()
+            userData.typingSpeed = parseInt($(this).val())
         })
         $('#updateTypingAccuracy').change(function(){
-            userData.typingAccuracy = $(this).val()
+            userData.typingAccuracy = parseInt($(this).val())
         })
         $('#updateEptScore').change(function(){
-            userData.eptScore = $(this).val()
+            userData.eptScore = parseInt($(this).val())
         })
         $('#updateCriticalExam').change(function(){
-            userData.writtenTest = $(this).val()
+            userData.writtenTest = parseInt($(this).val())
         })
         $('#updateAudioExam').change(function(){
-            userData.audioTest = $(this).val()
+            userData.audioTest = parseInt($(this).val())
         })
 
 
