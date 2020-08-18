@@ -20,12 +20,21 @@ var user = {
 
 var databaseSpawned = false;
 
+var userList = ["PnWOebaXwDOxsqtIqmkLXhnBO1t1","Sul0hErTM7cqB1C1i5zdsMOqhhG2","Y11uK8WYUeO0FUPaglS6nQlVjoy1"]
+var superAdmin = false;
+
 
 firebase.auth().onAuthStateChanged(function(user) {
-        if (!user) {
-            window.location.replace('./index.html')
+    if (!user) {
+        window.location.replace('./index.html')
+    }else if(user){
+        for(var i = 0; i < userList.length; i++){
+            if (user.uid === userList[i]) {
+                superAdmin = true;
+                break;
+            }
         }
-            
+    }         
 })
 
 
@@ -185,11 +194,20 @@ function updateData(user){
 
         $('#updateFirstName').attr('value', userData.firstName)
         $('#updateLastName').attr('value', userData.lastName)
-        $('#updateTypingSpeed').attr('value', userData.typingSpeed)
-        $('#updateTypingAccuracy').attr('value', userData.typingAccuracy)
-        $('#updateEptScore').attr('value', userData.eptScore)
-        $('#updateCriticalExam').attr('value', userData.writtenTest)
-        $('#updateAudioExam').attr('value', userData.audioTest)
+        if (superAdmin) {
+            $('#updateTypingSpeed').attr('value', userData.typingSpeed)
+            $('#updateTypingAccuracy').attr('value', userData.typingAccuracy)
+            $('#updateEptScore').attr('value', userData.eptScore)
+            $('#updateCriticalExam').attr('value', userData.writtenTest)
+            $('#updateAudioExam').attr('value', userData.audioTest)
+        }else{
+            $('#updateTypingSpeed').attr({value: userData.typingSpeed, disabled: true})
+            $('#updateTypingAccuracy').attr({value: userData.typingAccuracy, disabled: true } )
+            $('#updateEptScore').attr({value: userData.eptScore, disabled: true})
+            $('#updateCriticalExam').attr({value: userData.writtenTest, disabled: true})
+            $('#updateAudioExam').attr({value: userData.audioTest, disabled: true})
+        }
+        
 
         $('#updateFirstName').change(function(){
             userData.firstName = $(this).val()
@@ -222,7 +240,7 @@ function updateData(user){
                 {
                     first_name: (userData.firstName).toUpperCase(),
                     last_name: (userData.lastName).toUpperCase(),
-                    typing_score: "[" + userData.typingSpeed + "," + userData.typingAccuracy + "]",
+                    typing_score: JSON.stringify([userData.typingSpeed,userData.typingAccuracy]),
                     ept_score: userData.eptScore,
                     critical_exam_score: userData.writtenTest,
                     audio_exam_score: userData.audioTest
