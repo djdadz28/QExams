@@ -108,8 +108,8 @@ $('#spawnDateButton').on('submit', function(e){
 
 function loadFinalResult(startDate, endDate) {
 
-    var myStartDate = moment.tz(startDate, "Asia/Hong_Kong").startOf('day').format()
-    var myEndDate = moment.tz(endDate, "Asia/Hong_Kong").endOf('day').format()
+    var myStartDate = moment.tz(startDate, "Asia/Manila").startOf('day').format()
+    var myEndDate = moment.tz(endDate, "Asia/Manila").endOf('day').format()
 
     var rootRef = database.ref().child("Records");
     var query = rootRef.orderByChild("date_taken").startAt(myStartDate);
@@ -130,7 +130,7 @@ function loadFinalResult(startDate, endDate) {
             var applicant = "<tr id=\"" +snap.key + "\" ><td>"+test_id + "</td><td>" + 
                                     first_name +"</td><td>" + 
                                     last_name + "</td><td>" + 
-                                    moment(date_taken).format('l') + "</td><td>" +
+                                    moment.tz(date_taken, "Asia/Manila").format('l') + "</td><td>" +
                                     typing_score + "</td><td>" +
                                     ept_score + "</td><td>" +
                                     critical_exam_score + "</td><td>" + 

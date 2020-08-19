@@ -32,5 +32,5 @@ $('#ans_15').text("Answer: " + print.answers.question_15)
 $('#initialTest').text(print.typing_score[0] + "(" + print.typing_score[1] + "%) and " + print.ept_score )
 $('#audio_result').text(print.audio_exam_score + "/5")
 $('#written_result').text(print.critical_exam_score + "/10")
-$('#date_taken').text("Test Date: " + moment(print.date_taken).format('l'))
+$('#date_taken').text("Test Date: " + moment.tz(print.date_taken, "Asia/Manila").format('l'))
 
