@@ -1,21 +1,22 @@
 var timer = document.getElementById("timer");
 var timeElapsed = 0;
 var setTimer = 61;
-var testPara = document.getElementById("testPara");
 var textArea = document.getElementById("textArea");
 
 var start = false
 
-var passage1 = "Warm up your fingers by typing these short test instructions. The test text is shown in the upper part of the screen. Type it as quickly and accurately as possible until the test time is up. The text you have typed is shown in the lower part of the screen. There you can see if you have made any typing errors. You can use backspace to correct typing errors, but do not spend too much time going back. Do not press enter after each line - only when the paragraph ends.";
-var passage2 = "While dreams and desires in life give us purpose, discipline molds and polish our path to attain that purpose. Discipline means to follow rules or do things in regular order. It is a very important part of life. Children should be taught to follow discipline while studying, eating or playing. Adults should also lead disciplined lives. Schools and places of work teach us discipline. Friends can also teach each other ways to follow rules and behave properly. Discipline helps us to grow up and become happy and successful.";
+var passages = [
+  "Warm up your fingers by typing these short test instructions. The test text is shown in the upper part of the screen. Type it as quickly and accurately as possible until the test time is up. The text you have typed is shown in the lower part of the screen. There you can see if you have made any typing errors. You can use backspace to correct typing errors, but do not spend too much time going back. Do not press enter after each line - only when the paragraph ends.",
+  "While dreams and desires in life give us purpose, discipline molds and polish our path to attain that purpose. Discipline means to follow rules or do things in regular order. It is a very important part of life. Children should be taught to follow discipline while studying, eating or playing. Adults should also lead disciplined lives. Schools and places of work teach us discipline. Friends can also teach each other ways to follow rules and behave properly. Discipline helps us to grow up and become happy and successful."
+];
 
-var generatePassage = function(){
-
-	var passages = [passage1, passage2];
-	var randomNumber = Math.floor(Math.random()*(2))
-	var actualPassage = passages[randomNumber];
-	return actualPassage;
+var generatePassage = function() {
+  return passages[
+    Math.floor(Math.random() * passages.length)
+  ];
 };
+
+var use_paragraph = generatePassage();
 
 
 $(function () {  
@@ -48,7 +49,7 @@ function calculateScore() {
 	var submittedWords = paraSubmitted.split(" ");
 	var wordCount = submittedWords.length; 
 
-	var testWords = testPara.innerHTML.split(" ");
+  var testWords = use_paragraph.split(" ")
 	var badWords = countIncorrectWords(testWords, submittedWords)
 	// var finalScore = (wordCount - (badWords/setTimer).toFixed(0));
 	var accuracy = getAccuracy(wordCount, badWords);
@@ -158,10 +159,8 @@ function countdown(seconds) {
 
 $(document).ready(function() {
 
+  $("#testParagraph").html(use_paragraph);
 
-	var paragraph = generatePassage();
-	testPara.innerHTML = paragraph;
-	
 	if (history.pushState != undefined) {
 	history.pushState(null, null, location.href);
 	}
@@ -173,12 +172,34 @@ $(document).ready(function() {
 
 	
 	
-	$("#textArea").keydown(function(){
+	$("#textArea").bind('input propertychange', function(){
 		if (!start) {
 			countdown(setTimer)
 			start = true
 		}
-	})
+
+    var inputted    = $(this).val();
+    var words_split = use_paragraph.split('').slice(0, inputted.length);
+    var input_split = inputted.split('');
+    var display     = [];
+
+    words_split.forEach(function(v, i) {
+      if (input_split[i] == v) {
+        display.push(v);
+      } else {
+        display.push('<span class="text-danger">' + v + '</span>');
+      }
+    });
+
+    $('#testParagraph').html(
+      "<span class='text-success'>" + display.join('') + "</span>" + use_paragraph.slice(inputted.length)
+    );
+  });
+
+  $("#textArea").on('click', function() {
+    var value = $(this).val();
+    $(this).focus().val('').val(value);
+  });
 
 	$("#proceedButton").click(function() {
 		var typing_score = sessionStorage.getItem('typingScores');
