@@ -334,7 +334,7 @@ $('document').ready(function() {
             var answer_2 = JSON.parse(sessionStorage.getItem('audio_answers'));
             var applicant_id = sessionStorage.getItem('test_id').toUpperCase();
             var all_answers = Object.assign(answer_1, answer_2)
-            var sktExam_end_time = moment.tz(new Date(), "Asia/Manila").format();
+            var sktExam_end_time = moment.utc().tz("Asia/Manila").format();
             var Results = testResult(all_answers);
 
             var test_result = {

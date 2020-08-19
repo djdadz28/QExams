@@ -62,7 +62,7 @@ $(document).ready(function() {
 
                     $("#eptConfirmStartButton").click(function() {
 
-                        var date_taken = moment.tz(new Date(), "Asia/Manila").format();
+                        var date_taken = moment.utc().tz("Asia/Manila").format();
 
                         updateRef.child(test_id.value.toUpperCase()).update({ept_start_confirmation: true, typing_score: JSON.stringify(['In Progress', 'In Progress']), date_taken: date_taken, typing_start_time: date_taken}).then(function() {
                             $('#eptStartConfirmationModal').modal('toggle');
@@ -125,7 +125,7 @@ $(document).ready(function() {
             $("#skippedQuestionsModal").modal('toggle')
         }else{
             var ept_score = (checkAnswers(answerHolder, correctAnswers) * 2)
-            var ept_end_time = moment.tz(new Date(), "Asia/Manila").format();
+            var ept_end_time = moment.utc().tz("Asia/Manila").format();
             var rootRef = database.ref("Records");
             
             $(this).attr("disabled", true).text("Submitting...")

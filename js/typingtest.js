@@ -185,7 +185,7 @@ $(document).ready(function() {
 		var applicant_id = sessionStorage.getItem('test_id');
 		var rootRef = database.ref("Records");
 
-		var typing_end_time = moment.tz(new Date(), "Asia/Manila").format();
+		var typing_end_time = moment.utc().tz("Asia/Manila").format();
             
 		$(this).attr("disabled", true).text("Submitting...")
 		rootRef.child(applicant_id).update({'typing_score': typing_score, 'typing_end_time': typing_end_time, 'ept_start_time': typing_end_time})

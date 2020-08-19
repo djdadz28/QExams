@@ -106,6 +106,7 @@ $('#spawnDateButton').on('submit', function(e){
 
 
 
+
 function loadFinalResult(startDate, endDate) {
 
     var myStartDate = moment.tz(startDate, "Asia/Manila").startOf('day').format()
@@ -113,7 +114,9 @@ function loadFinalResult(startDate, endDate) {
 
     var rootRef = database.ref().child("Records");
     var query = rootRef.orderByChild("date_taken").startAt(myStartDate);
-    query.on('child_added', function (snap){            
+    
+    query.on('child_added', function (snap){
+        
         var date_taken = snap.child("date_taken").val();
         var ept_start_confirmation = snap.child("ept_start_confirmation").val();
         if(date_taken <= myEndDate && ept_start_confirmation){
@@ -387,12 +390,6 @@ function myPopup(url, windowname, w, h, x, y)
 //     }
 
 // }
-
-
-
-
-
-
 
 
 
